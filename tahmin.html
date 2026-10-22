@@ -4,9 +4,10 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Yaklaş Kazan · HTALKS</title>
-  <meta name="description" content="Futbol sorusu gelir, herkes tahmin eder, en çok yaklaşan kazanır.">
-  <meta name="theme-color" content="#04090d">
-  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <meta name="description" content="Futbol sorusu gelir, herkes sırayla tahmin eder, en çok yaklaşan kazanır.">
+  <meta name="theme-color" content="#03051a">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -17,7 +18,7 @@
 
   <header class="topbar">
     <a class="brand" href="index.html">
-      <span class="brand-mark">H</span>
+      <img class="brand-logo" src="assets/img/logo.jpg" alt="HTALKS">
       <span class="brand-text"><b>HTALKS</b><small>Oyun 01 · Yaklaş Kazan</small></span>
     </a>
     <nav class="nav">
@@ -25,54 +26,51 @@
       <a href="tahmin.html" class="active">Yaklaş Kazan</a>
       <a href="muzayede.html">Kör Müzayede</a>
     </nav>
-    <div class="topbar-spacer"></div>
+    <div class="spacer"></div>
     <div class="topbar-actions">
-      <button class="icon-btn hidden" id="btn-menu" aria-label="Oyun menüsü" title="Kurulum ekranına dön">☰</button>
+      <button class="icon-btn hidden" id="btn-history" aria-label="Oynanan sorular" title="Oynanan sorular (M)">≡</button>
+      <button class="icon-btn hidden" id="btn-menu" aria-label="Kurulum" title="Kurulum ekranına dön">⚙</button>
       <button class="icon-btn" id="btn-sound" aria-label="Ses"></button>
       <button class="icon-btn" id="btn-full" aria-label="Tam ekran"></button>
     </div>
   </header>
 
   <!-- ============ KURULUM ============ -->
-  <main id="setup" class="wrap setup">
+  <main id="setup" class="screen">
     <div class="setup-head">
       <span class="eyebrow"><span class="dot"></span> Oyun 01</span>
       <h1>Yaklaş Kazan</h1>
       <p>Bir futbol sorusu, üç tahmin. Rakama en çok yaklaşan puanı alır, hedef puana ilk ulaşan şampiyon olur.</p>
     </div>
-
     <div class="setup-grid">
       <div class="panel setup-box">
         <h3>Nasıl oynanır?</h3>
         <ol class="rules">
-          <li><div><b>Soru ekrana gelir</b><span>"Messi 2011-12'de kaç gol attı?", "Courtois kaç santim?" gibi.</span></div></li>
-          <li><div><b>Herkes tahminini gizlice yazar</b><span>Kutuya yaz, <kbd>Enter</kbd>'a bas — cevap kilitlenir ve gizlenir.</span></div></li>
-          <li><div><b>Cevap açıklanır</b><span>Sayı doğrusunda kim ne kadar yaklaştı, herkes görür.</span></div></li>
-          <li><div><b>Puanlama</b><span>En yakın tahmin <b>+1</b>. Tam isabet <b>+2</b>. Eşitlikte ikisi de alır. "Kim daha çok?" sorularında doğru bilen herkes +1.</span></div></li>
+          <li><div><b>Soru ekrana gelir</b><span>"Messi 2011-12'de kaç gol attı?", "Courtois kaç santim?", "Pirlo hangi yıl doğdu?" gibi.</span></div></li>
+          <li><div><b>Herkes sırayla cevap verir</b><span>Site kimin sırası olduğunu söyler; Hasan cevabı yazıp <kbd>Enter</kbd>'a basar. Cevap gizlenir.</span></div></li>
+          <li><div><b>Sıra her soruda döner</b><span>1. soruda Hasan, 2. soruda Turan, 3. soruda Hilmi önce cevap verir. Herkese adil.</span></div></li>
+          <li><div><b>Puanlama</b><span>En yakın tahmin <b>+1</b>, tam isabet <b>+2</b>. Eşitlikte ikisi de alır. Şıklı sorularda doğru bilen herkes <b>+1</b>.</span></div></li>
           <li><div><b>Hedef puana ilk ulaşan kazanır</b><span>Hedefte eşitlik olursa altın soruyla devam edilir.</span></div></li>
         </ol>
       </div>
-
-      <div class="panel setup-box stack">
+      <div class="panel setup-box">
         <div>
           <h3>Hedef puan</h3>
           <div class="seg" id="target-seg"></div>
         </div>
         <div>
-          <h3>Kategoriler</h3>
+          <h3>Kategoriler <span id="cat-toggle" style="cursor:pointer;color:var(--accent);letter-spacing:0.1em;margin-left:8px">(hepsini seç / kaldır)</span></h3>
           <div class="chk-list" id="cat-list"></div>
         </div>
         <div>
           <h3>Soru havuzu</h3>
-          <div class="row">
-            <span class="muted" id="pool-info"></span>
-          </div>
+          <div class="muted" id="pool-info"></div>
           <div class="row" style="margin-top:10px">
             <button class="btn btn-ghost btn-sm" id="btn-custom">+ Kendi sorunu ekle</button>
             <button class="btn btn-ghost btn-sm" id="btn-reset-used">Sorulanları sıfırla</button>
           </div>
         </div>
-        <div class="row">
+        <div class="row setup-actions">
           <button class="btn btn-xl" id="btn-start">Oyunu Başlat</button>
           <button class="btn btn-ghost hidden" id="btn-resume">Kaldığın yerden devam et</button>
         </div>
@@ -81,20 +79,23 @@
   </main>
 
   <!-- ============ OYUN ============ -->
-  <main id="game" class="wrap-wide game-screen hidden">
+  <main id="game" class="screen hidden">
     <div class="scoreboard" id="scoreboard"></div>
-
     <section class="panel q-stage" id="q-stage"></section>
-
     <section class="answers" id="answers"></section>
 
-    <section class="panel reveal-panel" id="reveal">
+    <div class="toolbar" id="toolbar">
+      <span class="turn-hint" id="turn-hint"></span>
+      <button class="btn btn-lg btn-gold" id="btn-reveal">Cevabı Göster <kbd>Enter</kbd></button>
+      <button class="btn btn-ghost" id="btn-skip" title="Bu soruyu puansız geç (S)">Soruyu geç</button>
+      <span class="hint">Cevabı yaz + <kbd>Enter</kbd> · Şıklar: <kbd>1</kbd>–<kbd>4</kbd> · Hazır kartına tıkla = düzelt · <kbd>M</kbd> geçmiş · <kbd>F</kbd> tam ekran</span>
+    </div>
+
+    <section class="panel reveal-panel hidden" id="reveal">
       <div class="reveal-top">
         <div class="reveal-answer">
-          <div>
-            <div class="lbl2">Doğru cevap</div>
-            <div class="row" style="align-items:baseline;gap:12px"><span class="big" id="rv-answer">0</span><span class="u" id="rv-unit"></span></div>
-          </div>
+          <div class="lbl2">Doğru cevap</div>
+          <div><span class="big" id="rv-answer">0</span><span class="u" id="rv-unit"></span></div>
         </div>
         <div class="reveal-note" id="rv-note"></div>
         <div class="reveal-actions">
@@ -104,21 +105,10 @@
       </div>
       <div class="numline" id="numline"></div>
     </section>
-
-    <div class="toolbar" id="toolbar">
-      <button class="btn btn-lg btn-gold" id="btn-reveal">Cevabı Göster <kbd>Enter</kbd></button>
-      <button class="btn btn-ghost" id="btn-skip" title="Bu soruyu puansız geç (S)">Soruyu geç</button>
-      <span class="hint">Kutuya yaz + <kbd>Enter</kbd> = kilitle · Kilide tıkla = düzenle · <kbd>F</kbd> tam ekran · <kbd>M</kbd> sonuçlar</span>
-    </div>
-
-    <section class="panel history hidden" id="history">
-      <h4>Oynanan sorular</h4>
-      <div class="history-list" id="history-list"></div>
-    </section>
   </main>
 
   <!-- ============ ŞAMPİYON ============ -->
-  <main id="winner" class="wrap winner-screen hidden"></main>
+  <main id="winner" class="screen winner-screen hidden"></main>
 
   <!-- ============ KENDİ SORUN ============ -->
   <div class="modal" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-title">
@@ -155,7 +145,18 @@
     </div>
   </div>
 
+  <!-- ============ GEÇMİŞ ============ -->
+  <div class="modal" id="history-modal" role="dialog" aria-modal="true" aria-labelledby="history-title">
+    <div class="panel modal-box" style="width:min(860px,100%)">
+      <h3 id="history-title">Oynanan sorular</h3>
+      <div class="history-list" id="history-list"></div>
+      <div class="row" style="margin-top:14px"><button class="btn btn-ghost" id="history-close">Kapat</button></div>
+    </div>
+  </div>
+
   <script src="assets/js/common.js"></script>
+  <script src="assets/js/data-players.js"></script>
+  <script src="assets/js/data-facts.js"></script>
   <script src="assets/js/data-questions.js"></script>
   <script src="assets/js/tahmin.js"></script>
 </body>

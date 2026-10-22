@@ -26,9 +26,9 @@
 
   /* ---------------- Yarışmacılar ---------------- */
   const DEFAULT_HOSTS = [
-    { name: "Hasan", color: "#ff4d5e", role: "Kurucu" },
-    { name: "Turan", color: "#38b6ff", role: "Yorumcu" },
-    { name: "Hilmi", color: "#ffc53d", role: "Yorumcu" },
+    { name: "Hasan", color: "#ff4d5e" },
+    { name: "Turan", color: "#38b6ff" },
+    { name: "Hilmi", color: "#ffc53d" },
   ];
 
   function getHosts() {
@@ -38,7 +38,6 @@
       return {
         name: (s.name || d.name).trim() || d.name,
         color: s.color || d.color,
-        role: d.role,
       };
     });
   }
@@ -71,9 +70,10 @@
     return (parts[0][0] + parts[parts.length - 1][0]).toLocaleUpperCase("tr");
   }
 
+  // 4 basamaklı sayılar (ör. yıllar) noktasız yazılır: 1987, 1311
   function fmt(n) {
     if (n == null || isNaN(n)) return "–";
-    return Number(n).toLocaleString("tr-TR", { maximumFractionDigits: 2 });
+    return Number(n).toLocaleString("tr-TR", { maximumFractionDigits: 2, useGrouping: Math.abs(n) >= 10000 });
   }
 
   function $(sel, root) { return (root || document).querySelector(sel); }
@@ -88,7 +88,7 @@
      Fotoğraflar tarayıcıda Wikipedia API'sinden çekilir ve
      yerel olarak önbelleğe alınır. Bulunamazsa baş harfler gösterilir.
      Bir fotoğrafı elle değiştirmek için: setPhotoOverride(anahtar, url) */
-  const PHOTO_CACHE_KEY = "photoCache.v2";
+  const PHOTO_CACHE_KEY = "photoCache.v3";
   const photoCache = store.get(PHOTO_CACHE_KEY, {});
   const photoOverrides = store.get("photoOverrides", {});
   const inflight = {};
@@ -110,7 +110,9 @@
     const data = await res.json();
     const pages = data && data.query && data.query.pages ? Object.values(data.query.pages) : [];
     pages.sort((a, b) => (a.index || 0) - (b.index || 0));
-    const hit = pages.find((p) => p.thumbnail && p.thumbnail.source);
+    // Logo, arma ve diziliş şemaları genelde SVG/PNG'dir; sadece fotoğrafları al
+    const isPhoto = (u) => !/\.(svg|png|gif)(\/|$|\?)/i.test(u) && !/\.svg\.png/i.test(u);
+    const hit = pages.find((p) => p.thumbnail && p.thumbnail.source && isPhoto(p.thumbnail.source));
     return hit ? hit.thumbnail.source : null;
   }
 
@@ -321,7 +323,7 @@
       function step(now) {
         const t = Math.min(1, (now - start) / d);
         const e = 1 - Math.pow(1 - t, 3);
-        el.textContent = (target * e).toLocaleString("tr-TR", { minimumFractionDigits: dec, maximumFractionDigits: dec });
+        el.textContent = (target * e).toLocaleString("tr-TR", { minimumFractionDigits: dec, maximumFractionDigits: dec, useGrouping: Math.abs(target) >= 10000 });
         if (t < 1) requestAnimationFrame(step);
         else { el.textContent = fmt(target); resolve(); }
       }
