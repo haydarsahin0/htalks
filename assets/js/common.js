@@ -26,9 +26,9 @@
 
   /* ---------------- Yarışmacılar ---------------- */
   const DEFAULT_HOSTS = [
-    { name: "Hasan", color: "#ff4d5e", photo: "assets/img/hasan.jpg" },
-    { name: "Turan", color: "#38b6ff", photo: "assets/img/turan.jpg" },
-    { name: "Hilmi", color: "#ffc53d", photo: "assets/img/hilmi.jpg" },
+    { name: "Hasan", color: "#ff4d5e", photo: "assets/img/hasan.jpg?v=202610221418" },
+    { name: "Turan", color: "#38b6ff", photo: "assets/img/turan.jpg?v=202610221418" },
+    { name: "Hilmi", color: "#ffc53d", photo: "assets/img/hilmi.jpg?v=202610221418" },
   ];
 
   function getHosts() {
