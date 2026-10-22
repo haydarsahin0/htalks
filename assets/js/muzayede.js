@@ -353,7 +353,7 @@
     const el = eligible().sort((a, b) => slotsLeft(b) - slotsLeft(a) || ((a - state.starter + N()) % N()) - ((b - state.starter + N()) % N()));
     state.bid = { amt: 1, who: el[0] };
     save();
-    HT.toast(`Kimse istemedi: ${p.n}, en çok boş yeri olan ${hosts[el[0]].name}'e 1 coin'e gidiyor`, 3200);
+    HT.toast(`Kimse istemedi: ${p.n} 1 coin karşılığında en çok boş yeri olan oyuncuya gidiyor: ${hosts[el[0]].name}`, 3200);
     setTimeout(startGoing, 600);
   }
 
