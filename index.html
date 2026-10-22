@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/css/style.css?v=202610221418">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610221654">
 </head>
 <body>
   <div class="stadium-bg"></div>
@@ -25,6 +25,7 @@
       <a href="index.html" class="active">Ana Sayfa</a>
       <a href="tahmin.html">Yaklaş Kazan</a>
       <a href="muzayede.html">Kör Müzayede</a>
+      <a href="xox.html">Futbol XOX</a>
     </nav>
     <div class="spacer"></div>
     <div class="topbar-actions">
@@ -47,15 +48,15 @@
       </div>
     </section>
 
-    <section class="games">
+    <section class="games three">
       <a class="game-card" href="tahmin.html" style="--glow:#00e58f">
         <span class="num">OYUN 01</span>
         <h2>Yaklaş Kazan</h2>
-        <p>Ekrana bir futbol sorusu gelir, herkes sırayla tahminini söyler. Gerçeğe en çok yaklaşan puanı kapar.</p>
+        <p>Futbol sorusu gelir, herkes sırayla tahmin eder. En çok yaklaşan puanı kapar.</p>
         <ul>
-          <li><b id="q-count">1.600+</b> soru: boy, doğum yılı, gol kralları, Ballon d'Or, finaller…</li>
-          <li>Her soruda ilk cevaplayan değişir, sıra adil döner</li>
-          <li>En yakın <b>+1</b>, tam isabet <b>+2</b> · ilk <b>10 puan</b> kazanır</li>
+          <li><b id="q-count">1.600+</b> soru, 16 kategori</li>
+          <li>Sıra her soruda döner</li>
+          <li>İlk <b>10 puan</b> kazanır</li>
         </ul>
         <span class="btn btn-lg go">Oyunu Başlat →</span>
         <div class="art art-numbers" aria-hidden="true"><span>170</span><span style="color:#00e58f">73</span><span>1987</span></div>
@@ -64,14 +65,27 @@
       <a class="game-card" href="muzayede.html" style="--glow:#ffc93c">
         <span class="num">OYUN 02</span>
         <h2>Kör Müzayede</h2>
-        <p>Kartlar kapalı gelir, sıradaki futbolcuyu kimse bilmez. 50 coin ile açık artırmada 5 kişilik kadronu kur.</p>
+        <p>Kartlar kapalı gelir. 50 coin ile açık artırmada 5 kişilik kadronu kur.</p>
         <ul>
-          <li><b id="p-count">350+</b> futbolcudan rastgele 15 kapalı kart</li>
-          <li>Sırayla teklif ya da pas; ilk teklif veren her kartta değişir</li>
-          <li>Herkes tam <b>5 futbolcu</b> alır · kazananı <b>seyirci</b> seçer</li>
+          <li><b id="p-count">350+</b> futbolcu, 15 kapalı kart</li>
+          <li>Sırayla teklif ya da pas</li>
+          <li>Kazananı <b>seyirci</b> seçer</li>
         </ul>
         <span class="btn btn-lg btn-gold go">Müzayedeyi Aç →</span>
         <div class="art art-cards" aria-hidden="true"><div>?</div><div>?</div><div>?</div></div>
+      </a>
+    
+      <a class="game-card" href="xox.html" style="--glow:#b48cff">
+        <span class="num">OYUN 03</span>
+        <h2>Futbol XOX</h2>
+        <p>3×3 tablo, iki kriter: Galatasaray × Brezilya gibi. Uyan futbolcuyu söyle, kareyi kap.</p>
+        <ul>
+          <li><b>14</b> hazır tablo + kendi tablonu kur</li>
+          <li>Sırayla hamle, süre sınırı, kare çalma</li>
+          <li>Üçünü yan yana dizen turu alır</li>
+        </ul>
+        <span class="btn btn-lg go" style="--c:#b48cff;color:#14002e">Tahtayı Kur →</span>
+        <div class="art" aria-hidden="true"><div class="art-grid"><span>X</span><span></span><span>O</span><span></span><span>X</span><span>△</span><span>O</span><span>△</span><span>X</span></div></div>
       </a>
     </section>
     <div class="home-foot">Futbolcu fotoğrafları Wikipedia / Wikimedia Commons'tan otomatik yüklenir · <kbd>F</kbd> tam ekran</div>
@@ -88,10 +102,10 @@
     </div>
   </div>
 
-  <script src="assets/js/common.js?v=202610221418"></script>
-  <script src="assets/js/data-players.js?v=202610221418"></script>
-  <script src="assets/js/data-facts.js?v=202610221418"></script>
-  <script src="assets/js/data-questions.js?v=202610221418"></script>
+  <script src="assets/js/common.js?v=202610221654"></script>
+  <script src="assets/js/data-players.js?v=202610221654"></script>
+  <script src="assets/js/data-facts.js?v=202610221654"></script>
+  <script src="assets/js/data-questions.js?v=202610221654"></script>
   <script>
     (function () {
       const row = HT.$("#hosts-row");

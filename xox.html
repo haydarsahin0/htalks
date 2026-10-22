@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Futbol XOX · HTALKS</title>
+  <meta name="description" content="3×3 tablo, iki kriter, bir futbolcu. Kareyi kap, üçü yan yana diz.">
+  <meta name="theme-color" content="#03051a">
+  <link rel="icon" href="assets/img/favicon.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css?v=202610221654">
+</head>
+<body>
+  <div class="stadium-bg"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <img class="brand-logo" src="assets/img/logo.jpg" alt="HTALKS">
+      <span class="brand-text"><b>HTALKS</b><small>Oyun 03 · Futbol XOX</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="tahmin.html">Yaklaş Kazan</a>
+      <a href="muzayede.html">Kör Müzayede</a>
+      <a href="xox.html" class="active">Futbol XOX</a>
+    </nav>
+    <div class="spacer"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn hidden" id="btn-undo" aria-label="Geri al" title="Son işlemi geri al (Z)">↶</button>
+      <button class="icon-btn hidden" id="btn-menu" aria-label="Kurulum" title="Kurulum ekranına dön">⚙</button>
+      <button class="icon-btn" id="btn-sound" aria-label="Ses"></button>
+      <button class="icon-btn" id="btn-full" aria-label="Tam ekran"></button>
+    </div>
+  </header>
+
+  <!-- ============ KURULUM ============ -->
+  <main id="setup" class="screen">
+    <div class="setup-head">
+      <span class="eyebrow" style="color:#b48cff"><span class="dot"></span> Oyun 03</span>
+      <h1>Futbol XOX</h1>
+      <p>3×3 tablo: satırda bir kriter, sütunda bir kriter. İkisini birden sağlayan futbolcuyu söyleyen kareyi kapar. Üçünü yan yana dizen turu alır.</p>
+    </div>
+    <div class="setup-grid">
+      <div class="panel setup-box">
+        <h3>Nasıl oynanır?</h3>
+        <ol class="rules">
+          <li><div><b>Sırası gelen bir kare seçer</b><span>Örn. <b>Galatasaray × Brezilya</b>. Hasan kareye tıklar ya da <kbd>1</kbd>–<kbd>9</kbd>'a basar.</span></div></li>
+          <li><div><b>İki kriteri sağlayan futbolcuyu söyler</b><span>Hasan ismi yazar (otomatik tamamlama var) ve <b>Doğru</b> ya da <b>Yanlış</b>'a basar. Doğruysa kare, futbolcunun fotoğrafıyla onun olur.</span></div></li>
+          <li><div><b>Yanlış, süre biter ya da pas: sıra geçer</b><span>Aynı futbolcu bir turda iki kez kullanılamaz. Sıra her turda başka kişiden başlar.</span></div></li>
+          <li><div><b>Çalma hakkı</b><span>Rakibin karesine başka bir doğru futbolcu söyleyen kareyi çalar. Çalınan kare kilitlenir, bir daha çalınamaz.</span></div></li>
+          <li><div><b>Üçü yan yana = tur senin</b><span>Yatay, dikey ya da çapraz. Tahta dolarsa en çok karesi olan alır. Tur sonunda olası cevaplar gösterilir.</span></div></li>
+        </ol>
+      </div>
+      <div class="panel setup-box">
+        <div>
+          <h3>Tablo</h3>
+          <select class="field" id="grid-select"></select>
+          <div class="row" style="margin-top:8px">
+            <button class="btn btn-ghost btn-sm" id="btn-custom">+ Kendi tablonu kur</button>
+            <span class="muted" id="grid-info"></span>
+          </div>
+        </div>
+        <div>
+          <h3>Maç</h3>
+          <div class="seg" id="rounds-seg"></div>
+        </div>
+        <div>
+          <h3>Cevap süresi</h3>
+          <div class="seg" id="timer-seg"></div>
+        </div>
+        <div>
+          <label class="chk"><input type="checkbox" id="steal"><span class="box"></span>Çalma hakkı açık</label>
+        </div>
+        <div class="row setup-actions">
+          <button class="btn btn-xl" id="btn-start" style="--c:#b48cff;color:#14002e">Maçı Başlat</button>
+          <button class="btn btn-ghost hidden" id="btn-resume">Kaldığın yerden devam et</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ OYUN ============ -->
+  <main id="game" class="screen hidden">
+    <div class="xox">
+      <div class="xox-board-wrap">
+        <div class="xox-board" id="board"></div>
+      </div>
+      <div class="xox-side">
+        <div class="xox-head">
+          <div><div class="lbl" id="round-lbl">TUR 1</div><div class="ttl" id="grid-title"></div></div>
+          <button class="btn btn-ghost btn-sm" id="btn-end-round" title="Turu şimdi bitir: en çok karesi olan alır">Turu bitir</button>
+        </div>
+        <div class="xox-scores" id="scores"></div>
+        <div class="turn xox-turn" id="xturn"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ ŞAMPİYON ============ -->
+  <main id="winner" class="screen winner-screen hidden"></main>
+
+  <!-- ============ KENDİ TABLON ============ -->
+  <div class="modal" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-title">
+    <div class="panel modal-box" style="width:min(760px,100%)">
+      <h3 id="custom-title">Kendi tablonu kur</h3>
+      <p class="muted" style="margin:-6px 0 14px">Kulüp ve ülke adlarını yazarsan renk ve bayrakla gösterilir (ör. "Galatasaray", "Brezilya"). Başka her şey yazılabilir: "Dünya Kupası kazandı", "Kaleci", "Süper Lig'de oynadı"…</p>
+      <form id="custom-form" class="form-grid">
+        <div class="full"><label class="lbl" for="cg-title">Tablo adı</label><input class="field" id="cg-title" maxlength="60" placeholder="Örn. Derbi gecesi"></div>
+        <div><label class="lbl">Satırlar</label>
+          <input class="field" data-r="0" required maxlength="34" placeholder="1. satır" style="margin-bottom:8px">
+          <input class="field" data-r="1" required maxlength="34" placeholder="2. satır" style="margin-bottom:8px">
+          <input class="field" data-r="2" required maxlength="34" placeholder="3. satır">
+        </div>
+        <div><label class="lbl">Sütunlar</label>
+          <input class="field" data-c="0" required maxlength="34" placeholder="1. sütun" style="margin-bottom:8px">
+          <input class="field" data-c="1" required maxlength="34" placeholder="2. sütun" style="margin-bottom:8px">
+          <input class="field" data-c="2" required maxlength="34" placeholder="3. sütun">
+        </div>
+        <div class="full row">
+          <button class="btn" type="submit" style="--c:#b48cff;color:#14002e">Tabloyu kaydet</button>
+          <button class="btn btn-ghost" type="button" id="custom-close">Kapat</button>
+        </div>
+      </form>
+      <div class="custom-list" id="custom-list"></div>
+    </div>
+  </div>
+
+  <datalist id="names"></datalist>
+  <div class="going" id="going"><span id="going-text"></span></div>
+
+  <script src="assets/js/common.js?v=202610221654"></script>
+  <script src="assets/js/data-players.js?v=202610221654"></script>
+  <script src="assets/js/data-xox.js?v=202610221654"></script>
+  <script src="assets/js/xox.js?v=202610221654"></script>
+</body>
+</html>

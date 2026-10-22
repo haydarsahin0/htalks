@@ -63,7 +63,7 @@
     "Icardi": "Mauro Icardi", "Immobile": "Ciro Immobile", "Cavani": "Edinson Cavani", "Osimhen": "Victor Osimhen",
     "Lautaro": "Lautaro Martínez", "Ibrahimović": "Zlatan Ibrahimović", "Nkunku": "Christopher Nkunku",
     "Valencia": "Enner Valencia", "Sørloth": "Alexander Sørloth", "Gomis": "Bafétimbi Gomis", "Alex": "Alex de Souza",
-    "Burak Yılmaz": "Burak Yılmaz", "Hakan Şükür": "Hakan Şükür", "Tanju Çolak": "Tanju Çolak",
+    "Burak Yılmaz": "Burak Yılmaz", "Tanju Çolak": "Tanju Çolak",
   };
   function photoOf(name) {
     const full = ALIAS[name] || name;
@@ -184,7 +184,6 @@
 2022-23|Mbappé|29
 2023-24|Mbappé|27`,
     "Süper Lig": `1987-88|Tanju Çolak|39
-1996-97|Hakan Şükür|38
 2010-11|Alex|28
 2011-12|Burak Yılmaz|33
 2012-13|Burak Yılmaz|24

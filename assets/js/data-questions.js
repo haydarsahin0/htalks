@@ -44,7 +44,6 @@ window.QUESTIONS = [
 
   /* ---------------- SÜPER LİG ---------------- */
   { id: "s1", cat: "Süper Lig", q: "<span class='hl'>Tanju Çolak</span> 1987-88 sezonunda Galatasaray'da kaç lig golü attı?", a: 39, unit: "gol", photo: "Tanju Çolak", note: "39 gol ile Avrupa Altın Ayakkabı'yı kazandı." },
-  { id: "s2", cat: "Süper Lig", q: "<span class='hl'>Hakan Şükür</span> Süper Lig kariyerinde toplam kaç gol attı?", a: 249, unit: "gol", photo: "Hakan Şükür", note: "249 gol ile Süper Lig'in en golcü oyuncusu." },
   { id: "s3", cat: "Süper Lig", q: "<span class='hl'>Enner Valencia</span> 2022-23 Süper Lig'de kaç gol attı?", a: 29, unit: "gol", photo: "Enner Valencia", note: "29 gol ile gol kralı oldu." },
   { id: "s4", cat: "Süper Lig", q: "<span class='hl'>Mauro Icardi</span> 2023-24 Süper Lig'de kaç gol attı?", a: 25, unit: "gol", photo: "Mauro Icardi", note: "25 gol ile gol kralı; Galatasaray 102 puanla şampiyon." },
   { id: "s5", cat: "Süper Lig", q: "<span class='hl'>Victor Osimhen</span> 2024-25 Süper Lig'de kaç gol attı?", a: 26, unit: "gol", photo: "Victor Osimhen", note: "26 gol ile gol kralı; Galatasaray şampiyon oldu." },
@@ -86,14 +85,12 @@ window.QUESTIONS = [
   { id: "r8", cat: "Kariyer", q: "<span class='hl'>Cristiano Ronaldo</span> Şampiyonlar Ligi'nde kariyeri boyunca kaç gol attı?", a: 140, unit: "gol", photo: "Cristiano Ronaldo", note: "140 gol — turnuvanın tüm zamanlar golcüsü (Messi 129)." },
   { id: "r9", cat: "Kariyer", q: "<span class='hl'>Paolo Maldini</span> Milan formasıyla kaç resmî maça çıktı?", a: 902, unit: "maç", photo: "Paolo Maldini", note: "902 maç, tek kulüp: Milan." },
   { id: "r10", cat: "Kariyer", q: "<span class='hl'>Messi</span> kaç kez Ballon d'Or kazandı?", a: 8, unit: "kez", photo: "Lionel Messi", note: "8 Ballon d'Or — rekor (Ronaldo 5)." },
-  { id: "r11", cat: "Kariyer", q: "<span class='hl'>Hakan Şükür</span> A Milli Takım'da kaç gol attı?", a: 51, unit: "gol", photo: "Hakan Şükür", note: "51 gol — milli takımın tüm zamanlar golcüsü." },
   { id: "r12", cat: "Kariyer", q: "<span class='hl'>Lewandowski</span> 2015'te Wolfsburg'a karşı 5 golü kaç dakikada attı?", a: 9, unit: "dakika", photo: "Robert Lewandowski", note: "Oyuna ikinci yarı girdi, 9 dakikada 5 gol!" },
 
   /* ---------------- DÜNYA KUPASI ---------------- */
   { id: "d1", cat: "Dünya Kupası", q: "<span class='hl'>Miroslav Klose</span> Dünya Kupaları'nda toplam kaç gol attı?", a: 16, unit: "gol", photo: "Miroslav Klose", note: "16 gol — Dünya Kupası rekoru." },
   { id: "d2", cat: "Dünya Kupası", q: "<span class='hl'>Just Fontaine</span> 1958 Dünya Kupası'nda kaç gol attı?", a: 13, unit: "gol", photo: "Just Fontaine", note: "13 gol — tek turnuva rekoru, hâlâ kırılamadı." },
   { id: "d3", cat: "Dünya Kupası", q: "<span class='hl'>Ronaldo Nazário</span> 2002 Dünya Kupası'nda kaç gol attı?", a: 8, unit: "gol", photo: "Ronaldo (Brazilian footballer)", name: "Ronaldo Nazário", note: "8 gol, finalde Almanya'ya 2 gol." },
-  { id: "d4", cat: "Dünya Kupası", q: "<span class='hl'>Hakan Şükür</span> 2002'de Güney Kore'ye kaçıncı saniyede gol attı?", a: 11, unit: "saniye", photo: "Hakan Şükür", note: "11. saniye (10,8 sn) — Dünya Kupası tarihinin en hızlı golü." },
   { id: "d5", cat: "Dünya Kupası", q: "Türkiye 2002 Dünya Kupası'nda toplam kaç gol attı?", a: 10, unit: "gol", photo: "Turkey national football team", name: "Türkiye milli futbol takımı", note: "7 maçta 10 gol; turnuvayı üçüncü bitirdik." },
   { id: "d6", cat: "Dünya Kupası", q: "<span class='hl'>Kylian Mbappé</span> 2022 Dünya Kupası'nda kaç gol attı?", a: 8, unit: "gol", photo: "Kylian Mbappé", note: "8 gol ile gol kralı; finalde hat-trick." },
   { id: "d7", cat: "Dünya Kupası", q: "<span class='hl'>Messi</span> Dünya Kupaları'nda toplam kaç maça çıktı? (2022 sonu itibarıyla)", a: 26, unit: "maç", photo: "Lionel Messi", note: "26 maç — 2022 sonunda Dünya Kupası rekoru." },
@@ -115,8 +112,6 @@ window.QUESTIONS = [
     options: [{ t: "Klose", photo: "Miroslav Klose" }, { t: "Ronaldo Nazário", photo: "Ronaldo (Brazilian footballer)" }], a: 0, note: "Klose 16, Ronaldo 15." },
   { id: "c4", cat: "Kim Daha Çok?", type: "choice", q: "Premier Lig'de kim daha çok gol attı?",
     options: [{ t: "Shearer", photo: "Alan Shearer" }, { t: "Rooney", photo: "Wayne Rooney" }], a: 0, note: "Shearer 260, Rooney 208." },
-  { id: "c5", cat: "Kim Daha Çok?", type: "choice", q: "A Milli Takım'da kim daha çok gol attı?",
-    options: [{ t: "Hakan Şükür", photo: "Hakan Şükür" }, { t: "Burak Yılmaz", photo: "Burak Yılmaz" }], a: 0, note: "Hakan Şükür 51, Burak Yılmaz 31." },
   { id: "c6", cat: "Kim Daha Çok?", type: "choice", q: "Kulübünde kim daha çok gol attı?",
     options: [{ t: "Henry (Arsenal)", photo: "Thierry Henry" }, { t: "Rooney (Man United)", photo: "Wayne Rooney" }], a: 1, note: "Rooney 253, Henry 228." },
   { id: "c7", cat: "Kim Daha Çok?", type: "choice", q: "Kim daha uzun?",

@@ -204,7 +204,6 @@
   P("Moussa Sow", "", "FV", "sn", "Fenerbahçe röveşatası", "t", 1986);
   P("Bafétimbi Gomis", "", "FV", "fr", "Galatasaray gol kralı", "t", 1985);
   P("Vincent Aboubakar", "", "FV", "cm", "Beşiktaş", "t", 1992);
-  P("Hakan Şükür", "", "FV", "tr", "Boğaların boğası · 2000 UEFA Kupası", "et", 1971, 190);
   P("Tanju Çolak", "", "FV", "tr", "1988 Avrupa Altın Ayakkabı", "t", 1963);
   P("Metin Oktay", "", "FV", "tr", "Taçsız Kral", "et", 1936);
   P("Lefter Küçükandonyadis", "", "FV", "tr", "Ordinaryüs", "et", 1925);

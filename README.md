@@ -1,6 +1,6 @@
 # HTALKS · Oyun Gecesi
 
-HTALKS canlı yayınının **ikinci saatinde** Hasan, Turan ve Hilmi'nin oynayıp yayında gösterebileceği iki futbol oyunu. Tamamen statik bir site; kurulum, sunucu veya derleme gerekmez. GitHub Pages'te doğrudan çalışır.
+HTALKS canlı yayınının **ikinci saatinde** Hasan, Turan ve Hilmi'nin oynayıp yayında gösterebileceği üç futbol oyunu. Tamamen statik bir site; kurulum, sunucu veya derleme gerekmez. GitHub Pages'te doğrudan çalışır.
 
 ## Oyunlar
 
@@ -22,6 +22,14 @@ Site tek bilgisayardan (Hasan'ın ekranı) yönetilecek şekilde tasarlandı: he
 - Kimse istemezse kart destenin sonuna gider; ikinci kez de istenmezse en çok boş yeri olana 1 coin'e verilir.
 - Sonunda kadrolar sahaya dizilir, seyirci en iyi kadroyu seçer.
 
+### Oyun 03 · Futbol XOX (`xox.html`)
+- 3×3 tablo: satırda bir kriter, sütunda bir kriter (ör. **Galatasaray × Brezilya**, **Dünya Kupası kazandı × Real Madrid**).
+- Sırası gelen bir kare seçer, iki kriteri sağlayan futbolcuyu söyler. Hasan ismi yazar (otomatik tamamlama) ve **Doğru / Yanlış**'a basar; doğruysa kare futbolcunun fotoğrafıyla o kişinin olur.
+- Sıra her hamlede döner, her turda başlayan kişi değişir. Süre sınırı (20/30/45/60 sn ya da süresiz).
+- **Çalma hakkı:** rakibin karesine başka bir doğru futbolcu söyleyen kareyi çalar; çalınan kare kilitlenir.
+- Üçünü yan yana dizen turu alır; tahta dolarsa en çok karesi olan alır. Tek tur, 3 tur ya da 5 turluk maç.
+- **14 hazır tablo** (her karede doğrulanmış örnek cevaplar, tur sonunda "Olası cevaplar" ile gösterilir) + kendi tablonu kurma.
+
 ## Klavye kısayolları
 
 | Tuş | Yaklaş Kazan | Kör Müzayede |
@@ -32,6 +40,8 @@ Site tek bilgisayardan (Hasan'ın ekranı) yönetilecek şekilde tasarlandı: he
 | `Boşluk` | — | Kartı aç / sıradaki kart |
 | `Z` | Puanlamayı geri al | Son işlemi geri al |
 | `S` / `M` | Soruyu geç / oynanan sorular | — |
+
+**Futbol XOX:** `1`–`9` kare seç · `Enter` doğru · `Esc` vazgeç · `P` pas · `Z` geri al
 | `F` | Tam ekran | Tam ekran |
 
 Yarışmacı isimleri ve renkleri ana sayfadaki **İsimleri düzenle** ile değiştirilebilir. Oyunlar her adımda kaydedilir; sayfa yenilense de kaldığın yerden devam edilir.
@@ -66,6 +76,9 @@ assets/css/style.css  Tüm tasarım
 assets/js/common.js   Ortak: kayıt, fotoğraf, ses, konfeti
 assets/js/tahmin.js   Oyun 01 mantığı
 assets/js/muzayede.js Oyun 02 mantığı
+xox.html              Oyun 03 · Futbol XOX
+assets/js/xox.js      Oyun 03 mantığı
+assets/js/data-xox.js XOX tabloları
 assets/js/data-*.js   Soru bankası, soru üreteci ve futbolcu havuzu
 assets/img/logo.jpg   Kanal logosu
 ```
