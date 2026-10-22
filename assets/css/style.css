@@ -717,3 +717,8 @@ label.lbl { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0
   .xox-board-wrap { width: 100%; height: auto; max-width: none; }
   .games.three { grid-template-columns: 1fr; }
 }
+
+/* Kurulum: ayarlar sütunu daha geniş, kategori etiketleri sıkı */
+.setup-grid { grid-template-columns: 0.85fr 1.15fr; }
+.chk-list { gap: calc(var(--u) * 0.55); }
+.chk { padding: calc(var(--u) * 0.45) calc(var(--u) * 1); font-size: max(11px, calc(var(--u) * 1.2)); }

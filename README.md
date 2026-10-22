@@ -7,7 +7,7 @@ HTALKS canlı yayınının **ikinci saatinde** Hasan, Turan ve Hilmi'nin oynayı
 Site tek bilgisayardan (Hasan'ın ekranı) yönetilecek şekilde tasarlandı: herkesin cevabını ve teklifini Hasan girer, site her adımda **sıranın kimde olduğunu** söyler. Masaüstünde her ekran tek sayfaya sığar, kaydırma yoktur.
 
 ### Oyun 01 · Yaklaş Kazan (`tahmin.html`)
-- **1.600+ soru**, 16 kategori: doğum yılı, boy, milliyet, lig gol kralları (Premier Lig, La Liga, Bundesliga, Serie A, Ligue 1, Süper Lig), Ballon d'Or, Şampiyonlar Ligi finalleri, Dünya Kupası, EURO, Süper Lig şampiyonları, stadyumlar, "Kim daha çok?", sezon golleri, asistler, kaleciler, rekorlar…
+- **2.500+ soru**, 23 kategori: doğum yılı, boy, milliyet, gol kralları, lig şampiyonları (5 büyük lig), Ballon d'Or, Şampiyonlar Ligi ve Avrupa Ligi finalleri, Dünya Kupası, EURO, Copa América, Afrika Kupası, Süper Lig, kupa sayıları, forma numaraları, transfer bedelleri, milli takım, stadyumlar, "Kim daha çok?", sezon golleri, asistler, kaleciler, rekorlar…
 - Kategoriler dengeli karışır; aynı soru havuz bitene kadar tekrar gelmez.
 - **Sırayla cevap:** site "Sıra: Turan" der, Hasan cevabı yazıp `Enter`'a basar, cevap gizlenir ve sıra bir sonrakine geçer.
 - **Sıra her soruda döner:** 1. soruda Hasan, 2. soruda Turan, 3. soruda Hilmi önce cevap verir.
@@ -15,7 +15,7 @@ Site tek bilgisayardan (Hasan'ın ekranı) yönetilecek şekilde tasarlandı: he
 - Hedef puana (varsayılan **10**) ilk ulaşan kazanır; eşitlikte altın soru.
 
 ### Oyun 02 · Kör Müzayede (`muzayede.html`)
-- **350+ futbolcu**; her müzayedede rastgele 15 kapalı kart (Karışık · Efsaneler · Günümüz Yıldızları · Türk Futbolu).
+- **640+ futbolcu**; her müzayedede rastgele 15 kapalı kart (Karışık · Efsaneler · Günümüz Yıldızları · Türk Futbolu).
 - Herkesin **50 coin**'i var, herkes tam **5 futbolcu** alır (her boş yer için 1 coin ayrılır, maksimum teklif otomatik hesaplanır).
 - **Sırayla teklif:** sırası gelen +1/+2/+5/+10 ya da özel miktar ile artırır veya **pas** der. Pas diyen o karttan çekilir. Bir kişi kalınca "Gidiyor… gidiyor… satıldı!"
 - **İlk söz hakkı her kartta döner.**
@@ -28,7 +28,7 @@ Site tek bilgisayardan (Hasan'ın ekranı) yönetilecek şekilde tasarlandı: he
 - Sıra her hamlede döner, her turda başlayan kişi değişir. Süre sınırı (20/30/45/60 sn ya da süresiz).
 - **Çalma hakkı:** rakibin karesine başka bir doğru futbolcu söyleyen kareyi çalar; çalınan kare kilitlenir.
 - Üçünü yan yana dizen turu alır; tahta dolarsa en çok karesi olan alır. Tek tur, 3 tur ya da 5 turluk maç.
-- **14 hazır tablo** (her karede doğrulanmış örnek cevaplar, tur sonunda "Olası cevaplar" ile gösterilir) + kendi tablonu kurma.
+- **20 hazır tablo** (her karede doğrulanmış örnek cevaplar, tur sonunda "Olası cevaplar" ile gösterilir) + kendi tablonu kurma.
 
 ## Klavye kısayolları
 

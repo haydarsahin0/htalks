@@ -29,9 +29,11 @@
   const MUN = K("Manchester United", "#da291c", "#fbe122");
   const MCI = K("Manchester City", "#6cabdd", "#1c2c5b");
   const PSG = K("PSG", "#004170", "#da291c");
+  const TS = K("Trabzonspor", "#6d1f3a", "#3db0e4");
 
   const BR = U("Brezilya", "br"), FR = U("Fransa", "fr"), NL = U("Hollanda", "nl"), AR = U("Arjantin", "ar");
   const ES = U("İspanya", "es"), PT = U("Portekiz", "pt"), IT = U("İtalya", "it"), TR = U("Türkiye", "tr"), UY = U("Uruguay", "uy");
+  const DE = U("Almanya", "de"), BE = U("Belçika", "be");
 
   window.XOX_GRIDS = [
     {
@@ -159,6 +161,60 @@
         [["N'Golo Kanté", "Fernando Torres", "Ángel Di María", "Paul Pogba"], ["Andrea Pirlo", "Gianluigi Buffon", "Fabio Cannavaro", "Zinedine Zidane"], ["Philipp Lahm", "Thomas Müller", "Miroslav Klose", "Benjamin Pavard"]],
         [["Cesc Fàbregas", "David Silva", "Cristiano Ronaldo", "Fernando Torres"], ["Giorgio Chiellini", "Leonardo Bonucci", "Jorginho", "Gianluigi Donnarumma"], ["Xabi Alonso", "Javi Martínez", "Dani Olmo"]],
         [["Cristiano Ronaldo", "Michael Owen", "Rodri", "George Weah"], ["Kaká", "Andriy Shevchenko", "Marco van Basten", "Cristiano Ronaldo"], ["Lothar Matthäus", "Karl-Heinz Rummenigge", "Gerd Müller", "Kevin Keegan"]],
+      ],
+    },
+    {
+      id: "sl-mevki", title: "Trabzonspor, Galatasaray, Fenerbahçe × Mevkiler",
+      rows: [TS, GS, FB], cols: [T("Kaleci", "🧤"), T("Orta saha", "🎯"), T("Forvet", "⚽")],
+      ex: [
+        [["Şenol Güneş", "Uğurcan Çakır", "Onur Kıvrak"], ["Abdülkadir Ömür", "Marek Hamšík", "Yusuf Yazıcı"], ["Hami Mandıralı", "Burak Yılmaz", "Alexander Sørloth", "Paul Onuachu"]],
+        [["Fernando Muslera", "Cláudio Taffarel"], ["Gheorghe Hagi", "Wesley Sneijder", "Selçuk İnan", "Arda Turan"], ["Mauro Icardi", "Didier Drogba", "Victor Osimhen", "Metin Oktay"]],
+        [["Volkan Demirel", "Rüştü Reçber", "Dominik Livaković", "Altay Bayındır"], ["Alex de Souza", "Emre Belözoğlu", "Fred", "Sebastian Szymański"], ["Aykut Kocaman", "Edin Džeko", "Robin van Persie", "Youssef En-Nesyri"]],
+      ],
+    },
+    {
+      id: "sl-ligler", title: "Süper Lig devleri × Avrupa'nın büyük ligleri",
+      rows: [GS, FB, BJK], cols: [T("Premier Lig'de oynadı", "🏴"), T("Bundesliga'da oynadı", "🇩🇪"), T("La Liga'da oynadı", "🇪🇸")],
+      ex: [
+        [["Didier Drogba", "Emmanuel Eboué", "Juan Mata", "Wilfried Zaha", "Tugay Kerimoğlu"], ["Hamit Altıntop", "Lukas Podolski", "İlkay Gündoğan", "Leroy Sané"], ["Arda Turan", "Juan Mata", "Albert Riera", "Radamel Falcao"]],
+        [["Robin van Persie", "Dirk Kuyt", "Nicolas Anelka", "Mesut Özil", "Fred"], ["Mesut Özil", "Edin Džeko"], ["Roberto Carlos", "Dani Güiza", "Arda Güler"]],
+        [["Demba Ba", "Ryan Babel", "Cenk Tosun", "Dele Alli"], ["Mario Gómez", "Ciro Immobile"], ["Guti", "Álvaro Negredo", "Pepe", "Nihat Kahveci"]],
+      ],
+    },
+    {
+      id: "sl-devler", title: "Süper Lig devleri × Real Madrid, Barcelona, Inter",
+      rows: [GS, FB, BJK], cols: [RM, FCB, INT],
+      ex: [
+        [["Gheorghe Hagi", "Wesley Sneijder"], ["Gheorghe Hagi", "Arda Turan", "Gheorghe Popescu"], ["Wesley Sneijder", "Emre Belözoğlu", "Okan Buruk", "Felipe Melo", "Mauro Icardi"]],
+        [["Roberto Carlos", "Mesut Özil", "Arda Güler", "Nicolas Anelka"], ["Rüştü Reçber"], ["Emre Belözoğlu", "Edin Džeko", "Milan Škriniar"]],
+        [["Pepe", "Guti"], ["Ricardo Quaresma", "Simão Sabrosa", "Rüştü Reçber"], ["Ricardo Quaresma"]],
+      ],
+    },
+    {
+      id: "sampiyonluk-ulke", title: "Şampiyonluklar × Fransa, Arjantin, Belçika",
+      rows: [T("Premier Lig şampiyonu oldu", "🏴"), T("Şampiyonlar Ligi kazandı", "⭐"), T("La Liga şampiyonu oldu", "🇪🇸")], cols: [FR, AR, BE],
+      ex: [
+        [["Thierry Henry", "Patrick Vieira", "N'Golo Kanté", "Patrice Evra"], ["Sergio Agüero", "Carlos Tevez", "Alexis Mac Allister", "Julián Álvarez"], ["Vincent Kompany", "Kevin De Bruyne", "Eden Hazard"]],
+        [["Zinedine Zidane", "Karim Benzema", "Marcel Desailly", "N'Golo Kanté"], ["Lionel Messi", "Javier Zanetti", "Diego Milito", "Javier Mascherano"], ["Thibaut Courtois", "Kevin De Bruyne", "Eden Hazard"]],
+        [["Zinedine Zidane", "Karim Benzema", "Thierry Henry", "Ousmane Dembélé"], ["Lionel Messi", "Ángel Di María", "Gonzalo Higuaín", "Diego Simeone"], ["Thibaut Courtois", "Eden Hazard"]],
+      ],
+    },
+    {
+      id: "ulke-kulup2", title: "Portekiz, Hollanda, Almanya × Real Madrid, Barcelona, Chelsea",
+      rows: [PT, NL, DE], cols: [RM, FCB, CHE],
+      ex: [
+        [["Cristiano Ronaldo", "Luís Figo", "Pepe", "Fábio Coentrão"], ["Luís Figo", "Deco", "João Cancelo", "João Félix"], ["Deco", "Ricardo Carvalho", "Paulo Ferreira", "João Félix"]],
+        [["Clarence Seedorf", "Wesley Sneijder", "Arjen Robben", "Ruud van Nistelrooy"], ["Johan Cruyff", "Patrick Kluivert", "Frenkie de Jong", "Ronald Koeman"], ["Arjen Robben", "Ruud Gullit", "Jimmy Floyd Hasselbaink"]],
+        [["Toni Kroos", "Mesut Özil", "Antonio Rüdiger", "Sami Khedira"], ["Marc-André ter Stegen", "Bernd Schuster"], ["Michael Ballack", "Kai Havertz", "Antonio Rüdiger", "Timo Werner"]],
+      ],
+    },
+    {
+      id: "gamerika-lig", title: "Brezilya, Arjantin, Uruguay × Premier Lig, Serie A, La Liga",
+      rows: [BR, AR, UY], cols: [T("Premier Lig'de oynadı", "🏴"), T("Serie A'da oynadı", "🇮🇹"), T("La Liga'da oynadı", "🇪🇸")],
+      ex: [
+        [["Roberto Firmino", "Alisson Becker", "Gabriel Jesus", "Willian", "Philippe Coutinho"], ["Kaká", "Ronaldo Nazário", "Cafu", "Adriano"], ["Ronaldinho", "Rivaldo", "Marcelo", "Vinícius Júnior"]],
+        [["Sergio Agüero", "Carlos Tevez", "Alexis Mac Allister", "Lisandro Martínez"], ["Javier Zanetti", "Gabriel Batistuta", "Paulo Dybala", "Lautaro Martínez"], ["Lionel Messi", "Diego Simeone", "Ángel Di María", "Gonzalo Higuaín"]],
+        [["Luis Suárez", "Edinson Cavani", "Darwin Núñez", "Diego Forlán"], ["Edinson Cavani", "Álvaro Recoba", "Fernando Muslera", "Diego Godín"], ["Luis Suárez", "Diego Forlán", "Federico Valverde", "Diego Godín", "Ronald Araújo"]],
       ],
     },
   ];

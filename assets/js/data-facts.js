@@ -485,6 +485,301 @@
     add(choice("st-" + s.replace(/\W/g, ""), "Stadyumlar", `${hl(s)} hangi takımın stadı?`, c, stClubs, { note: `${s} → ${c}.` }));
   });
 
+  /* =========================================================
+     9) LİG ŞAMPİYONLARI (sezon | şampiyon)
+     ========================================================= */
+  const CHAMPS = {
+    "Premier Lig": `1992-93|Manchester United
+1993-94|Manchester United
+1994-95|Blackburn Rovers
+1995-96|Manchester United
+1996-97|Manchester United
+1997-98|Arsenal
+1998-99|Manchester United
+1999-00|Manchester United
+2000-01|Manchester United
+2001-02|Arsenal
+2002-03|Manchester United
+2003-04|Arsenal
+2004-05|Chelsea
+2005-06|Chelsea
+2006-07|Manchester United
+2007-08|Manchester United
+2008-09|Manchester United
+2009-10|Chelsea
+2010-11|Manchester United
+2011-12|Manchester City
+2012-13|Manchester United
+2013-14|Manchester City
+2014-15|Chelsea
+2015-16|Leicester City
+2016-17|Chelsea
+2017-18|Manchester City
+2018-19|Manchester City
+2019-20|Liverpool
+2020-21|Manchester City
+2021-22|Manchester City
+2022-23|Manchester City
+2023-24|Manchester City
+2024-25|Liverpool`,
+    "La Liga": `2000-01|Real Madrid
+2001-02|Valencia
+2002-03|Real Madrid
+2003-04|Valencia
+2004-05|Barcelona
+2005-06|Barcelona
+2006-07|Real Madrid
+2007-08|Real Madrid
+2008-09|Barcelona
+2009-10|Barcelona
+2010-11|Barcelona
+2011-12|Real Madrid
+2012-13|Barcelona
+2013-14|Atlético Madrid
+2014-15|Barcelona
+2015-16|Barcelona
+2016-17|Real Madrid
+2017-18|Barcelona
+2018-19|Barcelona
+2019-20|Real Madrid
+2020-21|Atlético Madrid
+2021-22|Real Madrid
+2022-23|Barcelona
+2023-24|Real Madrid
+2024-25|Barcelona`,
+    "Serie A": `2000-01|Roma
+2001-02|Juventus
+2002-03|Juventus
+2003-04|Milan
+2006-07|Inter
+2007-08|Inter
+2008-09|Inter
+2009-10|Inter
+2010-11|Milan
+2011-12|Juventus
+2012-13|Juventus
+2013-14|Juventus
+2014-15|Juventus
+2015-16|Juventus
+2016-17|Juventus
+2017-18|Juventus
+2018-19|Juventus
+2019-20|Juventus
+2020-21|Inter
+2021-22|Milan
+2022-23|Napoli
+2023-24|Inter
+2024-25|Napoli`,
+    "Bundesliga": `1999-00|Bayern Münih
+2000-01|Bayern Münih
+2001-02|Borussia Dortmund
+2002-03|Bayern Münih
+2003-04|Werder Bremen
+2004-05|Bayern Münih
+2005-06|Bayern Münih
+2006-07|Stuttgart
+2007-08|Bayern Münih
+2008-09|Wolfsburg
+2009-10|Bayern Münih
+2010-11|Borussia Dortmund
+2011-12|Borussia Dortmund
+2012-13|Bayern Münih
+2018-19|Bayern Münih
+2022-23|Bayern Münih
+2023-24|Bayer Leverkusen
+2024-25|Bayern Münih`,
+    "Ligue 1": `2001-02|Lyon
+2002-03|Lyon
+2003-04|Lyon
+2004-05|Lyon
+2005-06|Lyon
+2006-07|Lyon
+2007-08|Lyon
+2008-09|Bordeaux
+2009-10|Marsilya
+2010-11|Lille
+2011-12|Montpellier
+2012-13|PSG
+2016-17|Monaco
+2020-21|Lille
+2024-25|PSG`,
+  };
+  Object.keys(CHAMPS).forEach((lg) => {
+    const rows = CHAMPS[lg].trim().split("\n").map((l) => { const [s, w] = l.split("|"); return { s, w }; });
+    const teams = Array.from(new Set(rows.map((r) => r.w)));
+    rows.forEach((r) => add(choice(("lc-" + lg + r.s).replace(/\s/g, ""), "Lig Şampiyonları", `${lg} ${hl(r.s)} sezonunun şampiyonu kimdi?`, r.w, teams, { note: `${lg} ${r.s}: ${r.w}.` })));
+  });
+  [["Leicester City", "Premier Lig", 2016, "5000'e 1 oranla gelen mucize şampiyonluk."], ["Blackburn Rovers", "Premier Lig", 1995, "Alan Shearer'lı Blackburn."], ["Montpellier", "Ligue 1", 2012, "Olivier Giroud gol kralı oldu."], ["Wolfsburg", "Bundesliga", 2009, "Džeko ve Grafite ile."], ["Bayer Leverkusen", "Bundesliga", 2024, "Xabi Alonso'nun takımı ligi namağlup bitirdi."]].forEach(([t, lg, y, n]) => {
+    add({ id: "lcy-" + t.replace(/\W/g, ""), cat: "Lig Şampiyonları", q: `${hl(t)} tarihindeki ilk ${lg} şampiyonluğunu hangi yıl kazandı?${t === "Blackburn Rovers" ? " (Premier Lig dönemi)" : ""}`, a: y, unit: "yıl", note: `${t}: ${y}. ${n}` });
+  });
+  add({ id: "lc-juve9", cat: "Lig Şampiyonları", q: `${hl("Juventus")} 2011-12'den başlayarak Serie A'yı üst üste kaç kez kazandı?`, a: 9, unit: "kez", note: "2011-12'den 2019-20'ye kadar üst üste 9 şampiyonluk." });
+  add({ id: "lc-bayern11", cat: "Lig Şampiyonları", q: `${hl("Bayern Münih")} 2012-13'ten başlayarak Bundesliga'yı üst üste kaç kez kazandı?`, a: 11, unit: "kez", note: "2012-13'ten 2022-23'e kadar üst üste 11 şampiyonluk; seriyi Leverkusen bitirdi." });
+  add({ id: "lc-lyon7", cat: "Lig Şampiyonları", q: `${hl("Lyon")} Ligue 1'i üst üste kaç kez kazandı?`, a: 7, unit: "kez", note: "2001-02'den 2007-08'e kadar üst üste 7 şampiyonluk." });
+  add({ id: "lc-city4", cat: "Lig Şampiyonları", q: `${hl("Manchester City")} 2020-21'den başlayarak Premier Lig'i üst üste kaç kez kazandı?`, a: 4, unit: "kez", note: "2020-21'den 2023-24'e kadar üst üste 4 şampiyonluk — Premier Lig rekoru." });
+
+  /* =========================================================
+     10) UEFA KUPASI / AVRUPA LİGİ FİNALLERİ
+     ========================================================= */
+  const UEL = `2000|Galatasaray|Arsenal|0-0|penaltılar 4-1 · Kopenhag
+2001|Liverpool|Alavés|5-4|altın gol
+2002|Feyenoord|Borussia Dortmund|3-2|
+2003|Porto|Celtic|3-2|uzatmalarda
+2004|Valencia|Marsilya|2-0|
+2005|CSKA Moskova|Sporting|3-1|
+2006|Sevilla|Middlesbrough|4-0|
+2007|Sevilla|Espanyol|2-2|penaltılar
+2008|Zenit|Rangers|2-0|
+2009|Shakhtar Donetsk|Werder Bremen|2-1|uzatmalarda
+2010|Atlético Madrid|Fulham|2-1|uzatmalarda
+2011|Porto|Braga|1-0|
+2012|Atlético Madrid|Athletic Bilbao|3-0|
+2013|Chelsea|Benfica|2-1|
+2014|Sevilla|Benfica|0-0|penaltılar
+2015|Sevilla|Dnipro|3-2|
+2016|Sevilla|Liverpool|3-1|
+2017|Manchester United|Ajax|2-0|
+2018|Atlético Madrid|Marsilya|3-0|
+2019|Chelsea|Arsenal|4-1|
+2020|Sevilla|Inter|3-2|
+2021|Villarreal|Manchester United|1-1|penaltılar
+2022|Eintracht Frankfurt|Rangers|1-1|penaltılar
+2023|Sevilla|Roma|1-1|penaltılar
+2024|Atalanta|Bayer Leverkusen|3-0|
+2025|Tottenham|Manchester United|1-0|`.split("\n").map((l) => { const [y, w, ls, sc, n] = l.split("|"); return { y: +y, w, l: ls, sc, n }; });
+  const uelClubs = Array.from(new Set(UEL.flatMap((u) => [u.w, u.l])));
+  UEL.forEach((u) => {
+    const extra = u.n ? ` (${u.n})` : "";
+    add(choice("uel-" + u.y, "Avrupa Ligi", `${hl(u.y)} UEFA Kupası / Avrupa Ligi finalini kim kazandı?`, u.w, uelClubs, { note: `${u.y} finali: ${u.w} ${u.sc} ${u.l}${extra}.` }));
+    add({ id: "uely-" + u.y, cat: "Avrupa Ligi", q: `${hl(u.w)}, finalde ${hl(u.l)} karşısında hangi yıl UEFA Kupası / Avrupa Ligi'ni kazandı?`, a: u.y, unit: "yıl", note: `${u.y} finali: ${u.w} ${u.sc} ${u.l}${extra}.` });
+  });
+  add({ id: "uel-sevilla", cat: "Avrupa Ligi", q: `${hl("Sevilla")} 2025'e kadar UEFA Kupası / Avrupa Ligi'ni kaç kez kazandı?`, a: 7, unit: "kez", note: "2006, 2007, 2014, 2015, 2016, 2020, 2023 — rekor." });
+  add({ id: "uel-gs-pen", cat: "Avrupa Ligi", q: `${hl("Galatasaray")} 2000 UEFA Kupası finalinde Arsenal'e karşı penaltılarda kaç gol attı?`, a: 4, unit: "penaltı", note: "Galatasaray penaltıları 4-1 kazandı; son penaltıyı Popescu attı." });
+  add({ id: "usc-2000", cat: "Avrupa Ligi", q: `${hl("Galatasaray")} 2000 UEFA Süper Kupası'nda Real Madrid'i yendi. Maçta toplam kaç gol atıldı?`, a: 3, unit: "gol", note: "Galatasaray 2-1 Real Madrid, Jardel altın golle kazandırdı." });
+
+  /* =========================================================
+     11) COPA AMERICA · AFRİKA KUPASI
+     ========================================================= */
+  const COPA = `2004|Brezilya|Arjantin|2-2|penaltılar
+2007|Brezilya|Arjantin|3-0|
+2011|Uruguay|Paraguay|3-0|
+2015|Şili|Arjantin|0-0|penaltılar
+2016|Şili|Arjantin|0-0|penaltılar
+2019|Brezilya|Peru|3-1|
+2021|Arjantin|Brezilya|1-0|
+2024|Arjantin|Kolombiya|1-0|uzatmalarda`.split("\n").map((l) => { const [y, w, r, sc, n] = l.split("|"); return { y: +y, w, r, sc, n }; });
+  const copaTeams = ["Brezilya", "Arjantin", "Uruguay", "Şili", "Kolombiya", "Paraguay", "Peru"];
+  COPA.forEach((c) => add(choice("copa-" + c.y, "Copa América & Afrika", `${hl("Copa América " + c.y)} şampiyonu hangi ülke?`, c.w, copaTeams, { note: `${c.y} finali: ${c.w} ${c.sc} ${c.r}${c.n ? " (" + c.n + ")" : ""}.` })));
+  add({ id: "copa-uy", cat: "Copa América & Afrika", q: `${hl("Uruguay")} 2025'e kadar kaç kez Copa América kazandı?`, a: 15, unit: "kez", note: "Uruguay 15 kez; Arjantin 2024 zaferiyle 16'ya çıkıp rekoru tek başına aldı." });
+  add({ id: "copa-ar", cat: "Copa América & Afrika", q: `${hl("Arjantin")} 2024 dahil kaç kez Copa América kazandı?`, a: 16, unit: "kez", note: "2024 zaferiyle 16 — rekor." });
+  const AFCON = `2006|Mısır
+2008|Mısır
+2010|Mısır
+2012|Zambiya
+2013|Nijerya
+2015|Fildişi Sahili
+2017|Kamerun
+2019|Cezayir
+2021|Senegal
+2023|Fildişi Sahili`.split("\n").map((l) => { const [y, w] = l.split("|"); return { y: +y, w }; });
+  const afTeams = ["Mısır", "Zambiya", "Nijerya", "Fildişi Sahili", "Kamerun", "Cezayir", "Senegal", "Fas", "Gana"];
+  AFCON.forEach((c) => add(choice("afcon-" + c.y, "Copa América & Afrika", `${hl("Afrika Uluslar Kupası " + c.y)} şampiyonu hangi ülke?`, c.w, afTeams, { note: `${c.y} Afrika Uluslar Kupası: ${c.w}${c.y === 2023 ? " (turnuva Ocak-Şubat 2024'te oynandı)" : ""}.` })));
+  add({ id: "afcon-eg", cat: "Copa América & Afrika", q: `${hl("Mısır")} Afrika Uluslar Kupası'nı 2006-2010 arasında üst üste kaç kez kazandı?`, a: 3, unit: "kez", note: "2006, 2008, 2010 — üst üste 3." });
+
+  /* =========================================================
+     12) DÜNYA KUPASI ALTIN TOP · EURO GOL KRALLARI
+     ========================================================= */
+  const GOLDBALL = `1982|Paolo Rossi
+1986|Diego Maradona
+1990|Salvatore Schillaci
+1994|Romário
+1998|Ronaldo Nazário
+2002|Oliver Kahn
+2006|Zinedine Zidane
+2010|Diego Forlán
+2014|Lionel Messi
+2018|Luka Modrić
+2022|Lionel Messi`.split("\n").map((l) => { const [y, n] = l.split("|"); return { y: +y, n }; });
+  const gbNames = Array.from(new Set(GOLDBALL.map((g) => g.n)));
+  GOLDBALL.forEach((g) => add(choice("gb-" + g.y, "Dünya Kupası", `${hl(g.y)} Dünya Kupası'nda turnuvanın en iyi oyuncusu (Altın Top) kimdi?`, g.n, gbNames, { photos: true, note: `${g.y} Altın Top: ${g.n}.` })));
+  add({ id: "gb-kahn", cat: "Dünya Kupası", q: `Dünya Kupası tarihinde Altın Top'u kazanan tek kaleci ${hl("Oliver Kahn")}. Hangi turnuvada kazandı?`, a: 2002, unit: "yıl", photo: "Oliver Kahn", note: "2002 Güney Kore-Japonya; Almanya finalde Brezilya'ya yenildi." });
+  [["Michel Platini", 1984, 9, "EURO 1984'te 9 gol — tek turnuva rekoru."], ["Antoine Griezmann", 2016, 6, "EURO 2016'da 6 gol, Fransa finalde Portekiz'e yenildi."], ["Milan Baroš", 2004, 5, "EURO 2004'te 5 gol."], ["David Villa", 2008, 4, "EURO 2008'de 4 gol, İspanya şampiyon."]].forEach(([n, y, g, note]) => {
+    add({ id: "eus-" + y, cat: "EURO", q: `${hl(n)} EURO ${y}'te kaç gol atarak gol kralı oldu?`, a: g, unit: "gol", photo: photoOf(n), name: n, note });
+  });
+
+  /* =========================================================
+     13) KUPA SAYILARI (2025 yazı itibarıyla)
+     ========================================================= */
+  [["Real Madrid", 15], ["Milan", 7], ["Bayern Münih", 6], ["Liverpool", 6], ["Barcelona", 5], ["Ajax", 4], ["Inter", 3], ["Manchester United", 3]].forEach(([t, n]) => {
+    add({ id: "uclc-" + t.replace(/\W/g, ""), cat: "Kupa Sayıları", q: `${hl(t)} 2025 finali dahil kaç kez Avrupa Kupası / Şampiyonlar Ligi kazandı?`, a: n, unit: "kez", note: `${t}: ${n} Avrupa şampiyonluğu (2025 yazı itibarıyla).` });
+  });
+  [["Galatasaray", 25], ["Fenerbahçe", 19], ["Beşiktaş", 16], ["Trabzonspor", 7]].forEach(([t, n]) => {
+    add({ id: "slc-" + t, cat: "Kupa Sayıları", q: `${hl(t)} 2024-25 sezonu dahil kaç kez Süper Lig şampiyonu oldu?`, a: n, unit: "kez", note: `${t}: ${n} Süper Lig şampiyonluğu (1959'dan beri oynanan Türkiye Ligi sayımıyla, 2024-25 dahil).` });
+  });
+  const COUNTS = [["Real Madrid (Şampiyonlar Ligi)", 15], ["Milan (Şampiyonlar Ligi)", 7], ["Bayern (Şampiyonlar Ligi)", 6], ["Barcelona (Şampiyonlar Ligi)", 5], ["Galatasaray (Süper Lig)", 25], ["Fenerbahçe (Süper Lig)", 19], ["Beşiktaş (Süper Lig)", 16], ["Sevilla (Avrupa Ligi)", 7], ["Brezilya (Dünya Kupası)", 5], ["Almanya (Dünya Kupası)", 4], ["Arjantin (Copa América)", 16], ["İspanya (EURO)", 4]];
+  for (let i = 0; i < COUNTS.length; i++) {
+    for (let j = i + 1; j < COUNTS.length; j++) {
+      const [a, na] = COUNTS[i], [b, nb] = COUNTS[j];
+      if (na === nb || (i + j) % 3 !== 0) continue;
+      add({ id: `kcmp-${i}-${j}`, cat: "Kim Daha Çok?", type: "choice", q: "Hangisinin kupası daha çok? (2025 yazı itibarıyla)", options: [{ t: a }, { t: b }], a: na > nb ? 0 : 1, note: `${a}: ${na} · ${b}: ${nb}.` });
+    }
+  }
+
+  /* =========================================================
+     14) FORMA NUMARALARI
+     ========================================================= */
+  const SHIRTS = [
+    ["Johan Cruyff", "Ajax ve Hollanda'da efsaneleşen", 14], ["Thierry Henry", "Arsenal'de", 14], ["Andrea Pirlo", "Milan ve Juventus'ta", 21],
+    ["Kaká", "Milan'da", 22], ["Paolo Maldini", "Milan'da emekliye ayrılan", 3], ["Zinedine Zidane", "Real Madrid'de", 5],
+    ["David Beckham", "Real Madrid'de", 23], ["David Beckham", "Manchester United'da", 7], ["Ronaldinho", "Milan'da", 80],
+    ["Pavel Nedvěd", "Juventus'ta", 11], ["Javier Zanetti", "Inter'de emekliye ayrılan", 4], ["Carles Puyol", "Barcelona'da", 5],
+    ["Xavi", "Barcelona'da", 6], ["Andrés Iniesta", "Barcelona'da", 8], ["Lionel Messi", "PSG'de", 30], ["Lionel Messi", "Barcelona'daki ilk yıllarında (10'dan önce)", 19],
+    ["Steven Gerrard", "Liverpool kaptanıyken", 8], ["Frank Lampard", "Chelsea'de", 8], ["Didier Drogba", "Chelsea'de", 11], ["Robin van Persie", "Manchester United'da", 20],
+    ["Zlatan Ibrahimović", "PSG'de", 10], ["Erling Haaland", "Manchester City'de", 9], ["Jude Bellingham", "Real Madrid'de", 5], ["Toni Kroos", "Real Madrid'de", 8],
+    ["Victor Osimhen", "Galatasaray'da", 45], ["Kevin De Bruyne", "Manchester City'de", 17], ["Rodri", "Manchester City'de", 16], ["Phil Foden", "Manchester City'de", 47],
+    ["Virgil van Dijk", "Liverpool'da", 4], ["Mohamed Salah", "Liverpool'da", 11], ["Son Heung-min", "Tottenham'da", 7], ["Harry Kane", "Bayern'de", 9],
+    ["Pedri", "Barcelona'da", 8], ["Gavi", "Barcelona'da", 6], ["Kylian Mbappé", "PSG'de", 7], ["Luka Modrić", "Real Madrid'de 2017'den sonra", 10],
+    ["Sergio Ramos", "Real Madrid'de", 4], ["Marcelo", "Real Madrid'de", 12], ["Andriy Shevchenko", "Milan'da", 7], ["Alessandro Nesta", "Milan'da", 13],
+    ["Gennaro Gattuso", "Milan'da", 8], ["Cafu", "Milan ve Brezilya'da", 2], ["Patrick Vieira", "Arsenal'de", 4], ["Dennis Bergkamp", "Arsenal'de", 10],
+    ["Eric Cantona", "Manchester United'da", 7], ["Ryan Giggs", "Manchester United'da", 11], ["Paul Scholes", "Manchester United'da", 18],
+    ["Luis Suárez", "Liverpool'da", 7], ["Vincent Kompany", "Manchester City'de", 4], ["Yaya Touré", "Manchester City'de", 42],
+    ["Mauro Icardi", "Galatasaray'da", 9], ["Gheorghe Hagi", "Galatasaray'da", 10], ["Alex de Souza", "Fenerbahçe'de", 10], ["Bukayo Saka", "Arsenal'de 2020'den beri", 7], ["Martin Ødegaard", "Arsenal kaptanıyken", 8],
+  ];
+  SHIRTS.forEach(([n, where, num], k) => {
+    add({ id: "sh-" + k + "-" + n.replace(/\W/g, ""), cat: "Forma Numarası", q: `${hl(n)} ${where} kaç numaralı formayı giydi?`, a: num, unit: "numara", photo: photoOf(n), name: n, note: `${n} ${where} ${num} numarayı giydi.` });
+  });
+
+  /* =========================================================
+     15) TRANSFER BEDELLERİ (milyon €, bonuslar hariç)
+     ========================================================= */
+  [["Neymar", "2017'de Barcelona'dan PSG'ye", 222], ["Kylian Mbappé", "2018'de Monaco'dan PSG'ye (kalıcı)", 180], ["João Félix", "2019'da Benfica'dan Atlético'ya", 126],
+   ["Enzo Fernández", "2023'te Benfica'dan Chelsea'ye", 121], ["Antoine Griezmann", "2019'da Atlético'dan Barcelona'ya (serbest kalma bedeli)", 120],
+   ["Paul Pogba", "2016'da Juventus'tan Manchester United'a", 105], ["Jude Bellingham", "2023'te Dortmund'dan Real Madrid'e", 103],
+   ["Eden Hazard", "2019'da Chelsea'den Real Madrid'e", 100], ["Cristiano Ronaldo", "2009'da Manchester United'dan Real Madrid'e", 94]].forEach(([n, d, v]) => {
+    add({ id: "tr-" + n.replace(/\W/g, ""), cat: "Transfer", q: `${hl(n)} ${d} kaç milyon euroya transfer oldu?`, a: v, unit: "milyon €", photo: photoOf(n), name: n, note: `${n}: yaklaşık ${v} milyon € (bonuslar hariç).` });
+  });
+
+  /* =========================================================
+     16) MİLLİ TAKIM & TÜRK KULÜPLERİ
+     ========================================================= */
+  const TRQ = [
+    ["trq-1", "Türkiye EURO 2008 yarı finalinde hangi takıma elendi?", "Almanya", ["Almanya", "İspanya", "Rusya", "Hırvatistan"], "Almanya 3-2 kazandı; Türkiye çeyrek finalde Hırvatistan'ı penaltılarla elemişti."],
+    ["trq-2", "Türkiye EURO 2024 çeyrek finalinde hangi takıma elendi?", "Hollanda", ["Hollanda", "İngiltere", "İspanya", "Fransa"], "Hollanda 2-1 kazandı."],
+    ["trq-3", "Türkiye 2002 Dünya Kupası yarı finalinde hangi takıma yenildi?", "Brezilya", ["Brezilya", "Almanya", "Güney Kore", "Senegal"], "Brezilya 1-0 (Ronaldo)."],
+    ["trq-4", "Türkiye 2002 Dünya Kupası üçüncülük maçında hangi takımı yendi?", "Güney Kore", ["Güney Kore", "Japonya", "Senegal", "ABD"], "Türkiye 3-2 Güney Kore."],
+    ["trq-5", "Türkiye 2002 Dünya Kupası çeyrek finalinde hangi takımı altın golle yendi?", "Senegal", ["Senegal", "Japonya", "Kosta Rika", "Çin"], "İlhan Mansız'ın altın golüyle 1-0."],
+    ["trq-6", "Galatasaray 2000 UEFA Kupası finalinde hangi takımı yendi?", "Arsenal", ["Arsenal", "Leeds United", "Real Madrid", "Borussia Dortmund"], "0-0 sonrası penaltılarla 4-1, Kopenhag."],
+    ["trq-7", "Fenerbahçe 2007-08 Şampiyonlar Ligi çeyrek finalinde hangi takıma elendi?", "Chelsea", ["Chelsea", "Sevilla", "Inter", "Barcelona"], "Son 16'da Sevilla'yı penaltılarla elemişti."],
+    ["trq-8", "2002 Dünya Kupası'nda Türkiye'nin altın golünü kim attı?", "İlhan Mansız", ["İlhan Mansız", "Hasan Şaş", "Ümit Davala", "Nihat Kahveci"], "Senegal'e karşı çeyrek finalde."],
+    ["trq-9", "EURO 2024'te Türkiye'nin Avusturya'yı 2-1 yendiği maçta iki golü kim attı?", "Merih Demiral", ["Merih Demiral", "Arda Güler", "Kenan Yıldız", "Barış Alper Yılmaz"], "Merih Demiral iki kez kafayla."],
+  ];
+  TRQ.forEach(([id, q, a, opts, note]) => {
+    const r = rng(id);
+    const o = opts.slice().sort(() => r() - 0.5);
+    add({ id, cat: "Milli Takım & Türk Kulüpleri", type: "choice", q, options: o.map((t) => ({ t, photo: photoOf(t) })), a: o.indexOf(a), note });
+  });
+  [["trn-1", "Türkiye A Milli Takımı ilk kez hangi yıl Dünya Kupası'na katıldı?", 1954, "yıl", "1954 İsviçre Dünya Kupası."], ["trn-2", "Türkiye EURO 2008'de çeyrek finalde Hırvatistan'a karşı kaçıncı dakikada (uzatmalar dahil) eşitliği yakaladı?", 122, "dakika", "Semih Şentürk 120+2'de attı, penaltılarda Türkiye kazandı."],
+   ["trn-3", "Türkiye EURO 2024'te Gürcistan'ı kaç kaç yendi? Toplam gol sayısını yaz.", 4, "gol", "Türkiye 3-1 Gürcistan; Arda Güler'in uzaktan golü vardı."]].forEach(([id, q, a, u, note]) => add({ id, cat: "Milli Takım & Türk Kulüpleri", q, a, unit: u, note }));
+
   const seen = new Set();
   window.GENERATED_QUESTIONS = OUT.filter((q) => (seen.has(q.id) ? false : seen.add(q.id)));
 })();
