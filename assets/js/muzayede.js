@@ -207,7 +207,7 @@
       t.className = "turn";
       t.style.setProperty("--c", h.color);
       t.innerHTML = `
-        <div class="who-big"><span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span><div><div class="lbl">Satıldı</div><div class="nm">${esc(h.name)}</div><div class="sub"><b>${esc(current().n)}</b> · ${state.bid.amt} coin</div></div></div>
+        <div class="who-big">${HT.avatar(h)}<div><div class="lbl">Satıldı</div><div class="nm">${esc(h.name)}</div><div class="sub"><b>${esc(current().n)}</b> · ${state.bid.amt} coin</div></div></div>
         <div class="big-action"><button class="btn btn-xl" style="--c:${h.color}" data-act="next">${last ? "Kadroları Göster" : "Sıradaki Kart"} <kbd>Boşluk</kbd></button></div>`;
       return;
     }
@@ -223,7 +223,7 @@
     t.style.setProperty("--c", h.color);
     t.innerHTML = `
       <div class="who-big">
-        <span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span>
+        ${HT.avatar(h)}
         <div><div class="lbl">Sıra sende</div><div class="nm">${esc(h.name)}</div><div class="sub">Bütçe <b>${state.coins[i]}</b> · Maks. teklif <b>${mx}</b></div></div>
       </div>
       <div class="actions">
@@ -265,7 +265,7 @@
       return `
       <div class="bidder ${state.turn === i && state.open && !state.sold ? "is-turn" : ""} ${state.bid && state.bid.who === i && state.open ? "is-lead" : ""} ${out ? "is-out" : ""}" style="--c:${h.color}">
         <div class="bidder-head">
-          <span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span>
+          ${HT.avatar(h)}
           <div class="nm">${esc(h.name)}</div>
           <div class="coins">${state.coins[i]}<small>COIN · MAKS ${maxBid(i)}</small></div>
           <span class="status ${stCls}">${st}</span>
@@ -521,7 +521,7 @@
     return `
     <div class="squad ${crowned ? "crowned" : ""}" style="--c:${h.color}">
       <div class="squad-head">
-        <span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span>
+        ${HT.avatar(h)}
         <div class="nm">${esc(h.name)}</div>
         <div class="meta">HARCANAN<b>${spent} / ${state.budget}</b></div>
       </div>

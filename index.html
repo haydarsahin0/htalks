@@ -107,7 +107,7 @@
       function chips() {
         row.innerHTML = HT.getHosts().map((h) => `
           <div class="host-chip">
-            <span class="host-avatar" style="--c:${h.color}">${HT.esc(h.name[0] || "?")}</span>
+            ${HT.avatar(h)}
             <b>${HT.esc(h.name)}</b>
           </div>`).join("");
       }

@@ -26,9 +26,9 @@
 
   /* ---------------- Yarışmacılar ---------------- */
   const DEFAULT_HOSTS = [
-    { name: "Hasan", color: "#ff4d5e" },
-    { name: "Turan", color: "#38b6ff" },
-    { name: "Hilmi", color: "#ffc53d" },
+    { name: "Hasan", color: "#ff4d5e", photo: "assets/img/hasan.jpg" },
+    { name: "Turan", color: "#38b6ff", photo: "assets/img/turan.jpg" },
+    { name: "Hilmi", color: "#ffc53d", photo: "assets/img/hilmi.jpg" },
   ];
 
   function getHosts() {
@@ -38,6 +38,7 @@
       return {
         name: (s.name || d.name).trim() || d.name,
         color: s.color || d.color,
+        photo: d.photo,
       };
     });
   }
@@ -53,6 +54,13 @@
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;")
       .replace(/'/g, "&#39;");
+  }
+
+  /** Yarışmacının yuvarlak profil resmi (fotoğraf yüklenmezse baş harfi) */
+  function avatar(h, cls) {
+    const letter = esc((h.name || "?")[0]);
+    const img = h.photo ? `<img src="${esc(h.photo)}" alt="${esc(h.name)}" onerror="this.remove()">` : "";
+    return `<span class="host-avatar ${h.photo ? "has-photo" : ""} ${cls || ""}" style="--c:${h.color}"><i>${letter}</i>${img}</span>`;
   }
 
   function shuffle(arr) {
@@ -382,7 +390,7 @@
   }
 
   window.HT = {
-    store, getHosts, saveHosts, esc, shuffle, initials, fmt, $, $$, flag,
+    store, getHosts, saveHosts, avatar, esc, shuffle, initials, fmt, $, $$, flag,
     getPhoto, photoHTML, hydratePhotos, preloadPhoto, setPhotoOverride,
     sfx, isMuted, setMuted, confetti, countUp, toast, initTopbar, ICONS,
   };

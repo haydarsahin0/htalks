@@ -214,7 +214,7 @@
       const lead = s > 0 && s === max && leaders === 1;
       return `
       <div class="score-card ${lead ? "leader" : ""} ${bump && bump.includes(i) ? "bump" : ""}" style="--c:${h.color}">
-        <span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span>
+        ${HT.avatar(h)}
         <div><div class="nm">${esc(h.name)}</div><div class="sub">${lead ? "● Lider · " : ""}Hedef ${state.target}</div></div>
         <div class="pts">${s}</div>
         <div class="score-adj"><button data-adj="${i}" data-d="1" title="Puan ekle">+</button><button data-adj="${i}" data-d="-1" title="Puan çıkar">−</button></div>
@@ -293,7 +293,7 @@
       <div class="${cls}" data-card="${i}" style="--c:${h.color}">
         <div class="who">
           <span class="order">${pos + 1}.</span>
-          <span class="host-avatar" style="--c:${h.color}">${esc(h.name[0])}</span>
+          ${HT.avatar(h)}
           <b>${esc(h.name)}</b>
           <span class="state">${stateTxt}</span>
         </div>
@@ -542,6 +542,7 @@
     const heights = [26, 20, 16];
     const played = state.history.filter((x) => !x.skipped).length;
     $("#winner").innerHTML = `
+      ${HT.avatar(h, "win-avatar")}
       <div class="trophy">🏆</div>
       <div class="sub">Yaklaş Kazan şampiyonu</div>
       <h1 style="--c:${h.color}">${esc(h.name)}</h1>
@@ -549,7 +550,7 @@
       <div class="podium">
         ${podium.map((p) => {
           const rank = order.indexOf(p);
-          return `<div class="step" style="--c:${p.x.color};height:calc(var(--u) * ${heights[rank]})"><div class="r">${rank + 1}.</div><div class="n">${esc(p.x.name)}</div><div class="p">${p.s} puan</div></div>`;
+          return `<div class="step" style="--c:${p.x.color};height:calc(var(--u) * ${heights[rank]})">${HT.avatar(p.x)}<div class="r">${rank + 1}.</div><div class="n">${esc(p.x.name)}</div><div class="p">${p.s} puan</div></div>`;
         }).join("")}
       </div>
       <div class="row" style="justify-content:center">

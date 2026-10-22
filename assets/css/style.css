@@ -167,7 +167,11 @@ kbd {
   border-radius: 50%; display: grid; place-items: center;
   font-family: var(--font-display); font-size: calc(var(--s) * 0.58); color: #0a0a0a;
   background: var(--c); box-shadow: 0 0 22px -4px var(--c);
+  position: relative; overflow: hidden;
 }
+.host-avatar i { font-style: normal; }
+.host-avatar img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 35%; }
+.host-avatar.has-photo { box-shadow: 0 0 0 calc(var(--s) * 0.06 + 1px) var(--c), 0 0 24px -4px var(--c); }
 .field, input.field, select.field {
   width: 100%; padding: calc(var(--u) * 1.1) calc(var(--u) * 1.5);
   border-radius: 12px; border: 1px solid var(--line-2); background: rgba(0, 0, 0, 0.35);
@@ -400,12 +404,15 @@ label.lbl { display: block; font-size: 12px; font-weight: 700; letter-spacing: 0
 
 /* Şampiyon */
 .winner-screen { align-items: center; justify-content: center; text-align: center; }
+.winner-screen .win-avatar { --s: calc(var(--u) * 16); margin-bottom: calc(var(--u) * 1); }
+.winner-screen .win-avatar + .trophy { position: relative; margin-top: calc(var(--u) * -3.4); font-size: calc(var(--u) * 6); }
 .winner-screen .trophy { font-size: calc(var(--u) * 11); line-height: 1; filter: drop-shadow(0 0 40px rgba(255, 201, 60, 0.6)); animation: float 3s ease-in-out infinite; }
 @keyframes float { 50% { transform: translateY(-10px) rotate(-3deg); } }
 .winner-screen .sub { font-size: calc(var(--u) * 2); color: var(--muted); letter-spacing: 0.3em; text-transform: uppercase; }
 .winner-screen h1 { font-family: var(--font-display); font-weight: 400; font-size: calc(var(--u) * 16); line-height: 0.85; margin: calc(var(--u) * 0.6) 0; color: var(--c); text-shadow: 0 0 80px var(--c); }
 .podium { display: flex; justify-content: center; align-items: flex-end; gap: calc(var(--u) * 1.6); margin: calc(var(--u) * 3) auto calc(var(--u) * 2.6); width: calc(var(--u) * 72); }
 .podium .step { flex: 1; border-radius: 16px 16px 0 0; padding: calc(var(--u) * 1.6) 10px; background: linear-gradient(180deg, color-mix(in srgb, var(--c) 35%, transparent), rgba(255,255,255,0.02)); border: 1px solid color-mix(in srgb, var(--c) 50%, transparent); border-bottom: 0; }
+.podium .step .host-avatar { margin: calc(var(--u) * -4) auto calc(var(--u) * 0.6); --s: calc(var(--u) * 5.4); }
 .podium .r { font-family: var(--font-display); font-size: calc(var(--u) * 4); color: var(--c); line-height: 1; }
 .podium .n { font-family: var(--font-display); font-size: calc(var(--u) * 3.2); line-height: 1.1; }
 .podium .p { color: var(--muted); font-weight: 700; }
