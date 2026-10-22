@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Yaklaş Kazan · HTALKS</title>
+  <meta name="description" content="Futbol sorusu gelir, herkes tahmin eder, en çok yaklaşan kazanır.">
+  <meta name="theme-color" content="#04090d">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="stadium-bg"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">H</span>
+      <span class="brand-text"><b>HTALKS</b><small>Oyun 01 · Yaklaş Kazan</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="tahmin.html" class="active">Yaklaş Kazan</a>
+      <a href="muzayede.html">Kör Müzayede</a>
+    </nav>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn hidden" id="btn-menu" aria-label="Oyun menüsü" title="Kurulum ekranına dön">☰</button>
+      <button class="icon-btn" id="btn-sound" aria-label="Ses"></button>
+      <button class="icon-btn" id="btn-full" aria-label="Tam ekran"></button>
+    </div>
+  </header>
+
+  <!-- ============ KURULUM ============ -->
+  <main id="setup" class="wrap setup">
+    <div class="setup-head">
+      <span class="eyebrow"><span class="dot"></span> Oyun 01</span>
+      <h1>Yaklaş Kazan</h1>
+      <p>Bir futbol sorusu, üç tahmin. Rakama en çok yaklaşan puanı alır, hedef puana ilk ulaşan şampiyon olur.</p>
+    </div>
+
+    <div class="setup-grid">
+      <div class="panel setup-box">
+        <h3>Nasıl oynanır?</h3>
+        <ol class="rules">
+          <li><div><b>Soru ekrana gelir</b><span>"Messi 2011-12'de kaç gol attı?", "Courtois kaç santim?" gibi.</span></div></li>
+          <li><div><b>Herkes tahminini gizlice yazar</b><span>Kutuya yaz, <kbd>Enter</kbd>'a bas — cevap kilitlenir ve gizlenir.</span></div></li>
+          <li><div><b>Cevap açıklanır</b><span>Sayı doğrusunda kim ne kadar yaklaştı, herkes görür.</span></div></li>
+          <li><div><b>Puanlama</b><span>En yakın tahmin <b>+1</b>. Tam isabet <b>+2</b>. Eşitlikte ikisi de alır. "Kim daha çok?" sorularında doğru bilen herkes +1.</span></div></li>
+          <li><div><b>Hedef puana ilk ulaşan kazanır</b><span>Hedefte eşitlik olursa altın soruyla devam edilir.</span></div></li>
+        </ol>
+      </div>
+
+      <div class="panel setup-box stack">
+        <div>
+          <h3>Hedef puan</h3>
+          <div class="seg" id="target-seg"></div>
+        </div>
+        <div>
+          <h3>Kategoriler</h3>
+          <div class="chk-list" id="cat-list"></div>
+        </div>
+        <div>
+          <h3>Soru havuzu</h3>
+          <div class="row">
+            <span class="muted" id="pool-info"></span>
+          </div>
+          <div class="row" style="margin-top:10px">
+            <button class="btn btn-ghost btn-sm" id="btn-custom">+ Kendi sorunu ekle</button>
+            <button class="btn btn-ghost btn-sm" id="btn-reset-used">Sorulanları sıfırla</button>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn btn-xl" id="btn-start">Oyunu Başlat</button>
+          <button class="btn btn-ghost hidden" id="btn-resume">Kaldığın yerden devam et</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ OYUN ============ -->
+  <main id="game" class="wrap-wide game-screen hidden">
+    <div class="scoreboard" id="scoreboard"></div>
+
+    <section class="panel q-stage" id="q-stage"></section>
+
+    <section class="answers" id="answers"></section>
+
+    <section class="panel reveal-panel" id="reveal">
+      <div class="reveal-top">
+        <div class="reveal-answer">
+          <div>
+            <div class="lbl2">Doğru cevap</div>
+            <div class="row" style="align-items:baseline;gap:12px"><span class="big" id="rv-answer">0</span><span class="u" id="rv-unit"></span></div>
+          </div>
+        </div>
+        <div class="reveal-note" id="rv-note"></div>
+        <div class="reveal-actions">
+          <button class="btn btn-ghost" id="btn-undo" title="Puanlamayı geri al (Z)">↶ Geri al</button>
+          <button class="btn btn-lg" id="btn-next">Sıradaki Soru <kbd>Enter</kbd></button>
+        </div>
+      </div>
+      <div class="numline" id="numline"></div>
+    </section>
+
+    <div class="toolbar" id="toolbar">
+      <button class="btn btn-lg btn-gold" id="btn-reveal">Cevabı Göster <kbd>Enter</kbd></button>
+      <button class="btn btn-ghost" id="btn-skip" title="Bu soruyu puansız geç (S)">Soruyu geç</button>
+      <span class="hint">Kutuya yaz + <kbd>Enter</kbd> = kilitle · Kilide tıkla = düzenle · <kbd>F</kbd> tam ekran · <kbd>M</kbd> sonuçlar</span>
+    </div>
+
+    <section class="panel history hidden" id="history">
+      <h4>Oynanan sorular</h4>
+      <div class="history-list" id="history-list"></div>
+    </section>
+  </main>
+
+  <!-- ============ ŞAMPİYON ============ -->
+  <main id="winner" class="wrap winner-screen hidden"></main>
+
+  <!-- ============ KENDİ SORUN ============ -->
+  <div class="modal" id="custom-modal" role="dialog" aria-modal="true" aria-labelledby="custom-title">
+    <div class="panel modal-box">
+      <h3 id="custom-title">Kendi sorunu ekle</h3>
+      <form id="custom-form" class="form-grid">
+        <div class="full">
+          <label class="lbl" for="cq-text">Soru</label>
+          <input class="field" id="cq-text" required maxlength="160" placeholder="Örn: **Icardi** 2022-23 Süper Lig'de kaç gol attı?">
+        </div>
+        <div>
+          <label class="lbl" for="cq-answer">Doğru cevap (sayı)</label>
+          <input class="field" id="cq-answer" required inputmode="decimal" placeholder="22">
+        </div>
+        <div>
+          <label class="lbl" for="cq-unit">Birim</label>
+          <input class="field" id="cq-unit" maxlength="20" placeholder="gol, cm, asist…">
+        </div>
+        <div>
+          <label class="lbl" for="cq-photo">Fotoğraf için futbolcu adı (isteğe bağlı)</label>
+          <input class="field" id="cq-photo" maxlength="80" placeholder="Mauro Icardi">
+        </div>
+        <div>
+          <label class="lbl" for="cq-note">Açıklama (isteğe bağlı)</label>
+          <input class="field" id="cq-note" maxlength="160" placeholder="Cevaptan sonra gösterilir">
+        </div>
+        <div class="full row">
+          <button class="btn" type="submit">Soruyu ekle</button>
+          <button class="btn btn-ghost" type="button" id="custom-close">Kapat</button>
+          <span class="muted" style="font-size:13px">İpucu: **iki yıldız** arasındaki kelime vurgulanır.</span>
+        </div>
+      </form>
+      <div class="custom-list" id="custom-list"></div>
+    </div>
+  </div>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/data-questions.js"></script>
+  <script src="assets/js/tahmin.js"></script>
+</body>
+</html>

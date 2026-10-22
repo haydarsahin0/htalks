@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kör Müzayede · HTALKS</title>
+  <meta name="description" content="Kartlar kapalı, bütçe 50 coin. Açık artırmayla 5 kişilik kadronu kur, seyirci kazananı seçsin.">
+  <meta name="theme-color" content="#04090d">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="stadium-bg"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">H</span>
+      <span class="brand-text"><b>HTALKS</b><small>Oyun 02 · Kör Müzayede</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html">Ana Sayfa</a>
+      <a href="tahmin.html">Yaklaş Kazan</a>
+      <a href="muzayede.html" class="active">Kör Müzayede</a>
+    </nav>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn hidden" id="btn-menu" aria-label="Oyun menüsü" title="Kurulum ekranına dön">☰</button>
+      <button class="icon-btn" id="btn-sound" aria-label="Ses"></button>
+      <button class="icon-btn" id="btn-full" aria-label="Tam ekran"></button>
+    </div>
+  </header>
+
+  <!-- ============ KURULUM ============ -->
+  <main id="setup" class="wrap setup">
+    <div class="setup-head">
+      <span class="eyebrow" style="color:var(--gold)"><span class="dot"></span> Oyun 02</span>
+      <h1>Kör Müzayede</h1>
+      <p>Kartlar kapalı gelir, sıradaki futbolcuyu kimse bilmez. Bütçeni iyi yönet: kadronda 5 yer var ve her biri en az 1 coin.</p>
+    </div>
+
+    <div class="setup-grid">
+      <div class="panel setup-box">
+        <h3>Kurallar</h3>
+        <ol class="rules">
+          <li><div><b>Herkesin <span id="r-budget">50</span> coin'i var</b><span>Para sadece bu müzayedede geçerli. Kalan coin'in puanı yok, harca!</span></div></li>
+          <li><div><b>Kart açılır, artırma başlar</b><span>Futbolcu 1 coin'den açılır. Herkes istediği kadar yükseltebilir.</span></div></li>
+          <li><div><b>Gidiyor… gidiyor… satıldı!</b><span>Sunucu çekici vurur, en yüksek teklifi veren futbolcuyu alır.</span></div></li>
+          <li><div><b>Herkes tam <span id="r-size">5</span> futbolcu alır</b><span>Kadrosunu doldurmak için her boş yere 1 coin ayırmak zorunlu; maksimum teklif buna göre hesaplanır. Kadrosu dolan artık teklif veremez.</span></div></li>
+          <li><div><b>Kazananı seyirci seçer</b><span>15 futbolcu dağıtılınca kadrolar sahaya dizilir. Chat'e sor, en iyi kadroyu taçlandır.</span></div></li>
+        </ol>
+      </div>
+
+      <div class="panel setup-box stack">
+        <div>
+          <h3>Futbolcu havuzu</h3>
+          <div class="seg" id="pool-seg"></div>
+          <p class="muted" style="font-size:13px;margin:10px 0 0" id="pool-info"></p>
+        </div>
+        <div>
+          <h3>Bütçe (kişi başı)</h3>
+          <div class="seg" id="budget-seg"></div>
+        </div>
+        <div>
+          <h3>Kadro büyüklüğü</h3>
+          <div class="seg" id="size-seg"></div>
+        </div>
+        <div>
+          <label class="chk"><input type="checkbox" id="balanced" checked><span class="box"></span>Dengeli dağılım (her kadroya en az bir kaleci düşecek kadar kaleci gelir)</label>
+        </div>
+        <div class="row">
+          <button class="btn btn-xl btn-gold" id="btn-start">Müzayedeyi Başlat</button>
+          <button class="btn btn-ghost hidden" id="btn-resume">Kaldığın yerden devam et</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ MÜZAYEDE ============ -->
+  <main id="game" class="wrap-wide game-screen hidden">
+    <div class="auction">
+      <div class="auction-center">
+        <div class="lot-head">
+          <div class="lot" id="lot-no">KART <b>1</b> / 15</div>
+          <div class="lot-progress" id="lot-progress"></div>
+        </div>
+        <div class="flip" id="flip">
+          <div class="flip-inner">
+            <div class="flip-face card-back" id="card-back">
+              <div class="brand-small">HTALKS</div>
+              <div class="q">?</div>
+              <div class="cta">Kartı açmak için tıkla · <kbd>Boşluk</kbd></div>
+            </div>
+            <div class="flip-face card-front" id="card-front"></div>
+          </div>
+          <div class="sold-stamp" id="sold-stamp"><span>SATILDI</span></div>
+        </div>
+        <div class="next-hint" id="next-hint"></div>
+      </div>
+
+      <div class="auction-side">
+        <div class="bid-display" id="bid-display"></div>
+        <div class="hammer-row">
+          <button class="btn btn-xl btn-gold" id="btn-hammer">Çekici Vur <kbd>Boşluk</kbd></button>
+          <div class="row" style="flex-wrap:nowrap">
+            <button class="btn btn-ghost" id="btn-pass" title="Kimse istemiyorsa kartı sona at">Sona at</button>
+            <button class="btn btn-ghost" id="btn-undo" title="Son işlemi geri al (Z)">↶</button>
+          </div>
+        </div>
+        <div class="bidders" id="bidders"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============ KADROLAR ============ -->
+  <main id="final" class="wrap-wide game-screen hidden"></main>
+
+  <div class="going" id="going"><span id="going-text"></span></div>
+
+  <script src="assets/js/common.js"></script>
+  <script src="assets/js/data-players.js"></script>
+  <script src="assets/js/muzayede.js"></script>
+</body>
+</html>

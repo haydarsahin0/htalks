@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>HTALKS · Oyun Gecesi</title>
+  <meta name="description" content="HTALKS canlı yayınının ikinci saati için futbol oyunları: Yaklaş Kazan ve Kör Müzayede.">
+  <meta name="theme-color" content="#04090d">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <div class="stadium-bg"></div>
+
+  <header class="topbar">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">H</span>
+      <span class="brand-text"><b>HTALKS</b><small>Oyun Gecesi</small></span>
+    </a>
+    <nav class="nav">
+      <a href="index.html" class="active">Ana Sayfa</a>
+      <a href="tahmin.html">Yaklaş Kazan</a>
+      <a href="muzayede.html">Kör Müzayede</a>
+    </nav>
+    <div class="topbar-spacer"></div>
+    <div class="topbar-actions">
+      <button class="icon-btn" id="btn-sound" aria-label="Ses"></button>
+      <button class="icon-btn" id="btn-full" aria-label="Tam ekran"></button>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section class="hero">
+      <span class="eyebrow"><span class="dot"></span> Canlı yayın · 2. saat</span>
+      <h1>Oyun<br><em>Zamanı</em></h1>
+      <p>Maç bitti, yorumlar yapıldı. Şimdi sıra masadakilerde: kim futbolu daha iyi biliyor, kim daha iyi kadro kuruyor?</p>
+      <div class="hosts-row" id="hosts-row"></div>
+    </section>
+
+    <section class="games">
+      <a class="game-card" href="tahmin.html" style="--glow:#00e58f">
+        <span class="num">OYUN 01</span>
+        <h2>Yaklaş<br>Kazan</h2>
+        <p>Ekrana bir futbol sorusu gelir. Herkes tahminini gizlice yazar. Gerçeğe en çok yaklaşan puanı kapar.</p>
+        <ul>
+          <li>Boy, gol, asist, kalecinin yediği gol, rekorlar…</li>
+          <li>En yakın tahmin <b>+1</b>, tam isabet <b>+2</b> puan</li>
+          <li>"Kim daha çok?" sorularında bilen herkes puan alır</li>
+          <li>İlk <b>10 puana</b> ulaşan kazanır</li>
+        </ul>
+        <span class="btn btn-lg go">Oyunu Başlat →</span>
+        <div class="art art-numbers" aria-hidden="true"><span>170</span><span style="color:#00e58f">73</span><span>21</span></div>
+      </a>
+
+      <a class="game-card" href="muzayede.html" style="--glow:#ffc93c">
+        <span class="num">OYUN 02</span>
+        <h2>Kör<br>Müzayede</h2>
+        <p>Kartlar kapalı gelir, sıradaki futbolcuyu kimse bilmez. Herkesin 50 coin'i var; açık artırmayla 5 kişilik kadronu kur.</p>
+        <ul>
+          <li>Toplam 15 futbolcu, rastgele ve sırayla</li>
+          <li>Her futbolcu <b>1 coin</b>'den açılır, en yüksek teklif alır</li>
+          <li>Herkes tam olarak <b>5 futbolcu</b> alır</li>
+          <li>Sonunda kazananı <b>seyirci</b> seçer</li>
+        </ul>
+        <span class="btn btn-lg btn-gold go">Müzayedeyi Aç →</span>
+        <div class="art art-cards" aria-hidden="true"><div>?</div><div>?</div><div>?</div></div>
+      </a>
+    </section>
+
+    <section class="panel settings">
+      <h3>Yarışmacılar</h3>
+      <p>İsimleri ve renkleri buradan değiştirebilirsin. Her iki oyunda da kullanılır.</p>
+      <div class="settings-grid" id="hosts-edit"></div>
+      <div class="row" style="margin-top:18px">
+        <button class="btn btn-ghost btn-sm" id="hosts-reset">Varsayılana dön</button>
+        <span class="muted" style="font-size:13px">Kısayol: her ekranda <kbd>F</kbd> tam ekran.</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">HTALKS Oyun Gecesi · futbolcu fotoğrafları Wikipedia / Wikimedia Commons'tan otomatik yüklenir.</footer>
+
+  <script src="assets/js/common.js"></script>
+  <script>
+    (function () {
+      const row = HT.$("#hosts-row");
+      const edit = HT.$("#hosts-edit");
+
+      function render() {
+        const hosts = HT.getHosts();
+        row.innerHTML = hosts.map((h) => `
+          <div class="host-chip">
+            <span class="host-avatar" style="--c:${h.color}">${HT.esc(h.name[0] || "?")}</span>
+            <div><b>${HT.esc(h.name)}</b><small>${HT.esc(h.role)}</small></div>
+          </div>`).join("");
+        edit.innerHTML = hosts.map((h, i) => `
+          <div class="host-edit">
+            <input type="color" value="${h.color}" data-i="${i}" data-k="color" aria-label="${HT.esc(h.name)} rengi">
+            <input type="text" class="field" value="${HT.esc(h.name)}" maxlength="14" data-i="${i}" data-k="name" aria-label="Yarışmacı ${i + 1} adı">
+          </div>`).join("");
+        hosts.forEach((h, i) => document.documentElement.style.setProperty(`--p${i + 1}`, h.color));
+      }
+
+      edit.addEventListener("input", (e) => {
+        const t = e.target;
+        if (!t.dataset.k) return;
+        const hosts = HT.getHosts();
+        hosts[+t.dataset.i][t.dataset.k] = t.value;
+        HT.saveHosts(hosts);
+        // sadece üstteki çipleri güncelle (input odağını kaybetmemek için)
+        const h = HT.getHosts();
+        row.innerHTML = h.map((x) => `
+          <div class="host-chip">
+            <span class="host-avatar" style="--c:${x.color}">${HT.esc(x.name[0] || "?")}</span>
+            <div><b>${HT.esc(x.name)}</b><small>${HT.esc(x.role)}</small></div>
+          </div>`).join("");
+      });
+      HT.$("#hosts-reset").addEventListener("click", () => { HT.store.del("hosts"); render(); HT.toast("Varsayılan isimler geri yüklendi"); });
+      render();
+    })();
+  </script>
+</body>
+</html>
